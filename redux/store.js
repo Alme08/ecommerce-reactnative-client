@@ -12,4 +12,5 @@ export default configureStore({
 });
 
 // HOST
-export const server = 'http://172.16.1.105:8080/api/v1';
+export const server =
+	'https://ecommerce-reactnative-server.onrender.com/api/v1';
