@@ -3,12 +3,17 @@ import axios from 'axios';
 
 // GET ALL PRODUCTS DATA ACTION
 
-export const getAllProductData = () => async dispatch => {
+export const getAllProductData = (keyword, category) => async dispatch => {
 	try {
 		dispatch({
 			type: 'getAllProductDataRequest',
 		});
-		const { data } = await axios.get(`${server}/product/get-all`);
+		const { data } = await axios.get(`${server}/product/get-all`, {
+			params: {
+				keyword: keyword,
+				category: category,
+			},
+		});
 		dispatch({
 			type: 'getAllProductDataSuccess',
 			payload: data?.products,
