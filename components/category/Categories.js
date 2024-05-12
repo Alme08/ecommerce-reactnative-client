@@ -7,8 +7,6 @@ import {
 } from 'react-native';
 import React from 'react';
 import { MaterialCommunityIcons, FontAwesome5 } from '@expo/vector-icons';
-import { CategoriesData } from '../../data/categories';
-import { useNavigation } from '@react-navigation/native';
 
 const icons = {
 	Bebidas: 'glass-cocktail',
@@ -19,8 +17,14 @@ const icons = {
 	Frutas: 'food-apple',
 };
 
-const Categories = ({ categories }) => {
-	const navigation = useNavigation();
+const Categories = ({ categories, category, setCategory }) => {
+	const handleCategoryPress = option => {
+		if (option._id === category) {
+			setCategory('');
+			return;
+		}
+		setCategory(option._id);
+	};
 	return (
 		<View style={styles.container}>
 			<View
@@ -72,18 +76,21 @@ const Categories = ({ categories }) => {
 						marginHorizontal: 15,
 					}}
 				>
-					{categories?.map(category => (
-						<View key={category._id}>
+					{categories?.map(cat => (
+						<View key={cat._id}>
 							<TouchableOpacity
 								style={styles.catContainer}
-								// onPress={() => navigation.navigate(category.path)}
+								onPress={() => handleCategoryPress(cat)}
 							>
 								<MaterialCommunityIcons
-									name={icons[category.category] || 'food'}
-									style={styles.catIcon}
+									name={icons[cat.category] || 'food'}
+									style={[
+										styles.catIcon,
+										cat._id === category ? styles.selected : {},
+									]}
 								/>
 
-								<Text style={styles.catTitle}>{category.category}</Text>
+								<Text style={styles.catTitle}>{cat.category}</Text>
 							</TouchableOpacity>
 						</View>
 					))}
@@ -106,6 +113,9 @@ const styles = StyleSheet.create({
 	catIcon: {
 		fontSize: 30,
 		verticalAlign: 'top',
+	},
+	selected: {
+		color: '#1c6399',
 	},
 	catTitle: {
 		fontSize: 12,
