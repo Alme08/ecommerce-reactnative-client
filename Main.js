@@ -22,19 +22,25 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 const Stack = createNativeStackNavigator();
 export default function Main() {
 	const [isAuth, setIsAuth] = useState(null);
+	const [loading, setLoading] = useState(true);
 	//get user
 	useEffect(() => {
 		const getUserLocalData = async () => {
 			let data = await AsyncStorage.getItem('@auth');
 			setIsAuth(data);
-			// let loginData = JSON.parse(data);
 			console.log('user login data ==>', data);
+			setLoading(false);
 		};
 		getUserLocalData();
 	}, []);
+	if (loading) {
+		return <Text>Loading...</Text>;
+	}
 	return (
 		<NavigationContainer>
-			<Stack.Navigator initialRouteName='login'>
+			{console.log('before', isAuth)}
+			<Stack.Navigator initialRouteName={isAuth ? 'home' : 'login'}>
+				{console.log('after', isAuth)}
 				<Stack.Screen
 					name='home'
 					component={Home}
@@ -55,25 +61,20 @@ export default function Main() {
 				<Stack.Screen name='payment' component={Payment} />
 				<Stack.Screen name='account' component={Account} />
 				<Stack.Screen name='cart' component={Cart} />
-
-				{!isAuth && (
-					<>
-						<Stack.Screen
-							name='login'
-							component={Login}
-							options={{
-								headerShown: false,
-							}}
-						/>
-						<Stack.Screen
-							name='register'
-							component={Register}
-							options={{
-								headerShown: false,
-							}}
-						/>
-					</>
-				)}
+				<Stack.Screen
+					name='login'
+					component={Login}
+					options={{
+						headerShown: false,
+					}}
+				/>
+				<Stack.Screen
+					name='register'
+					component={Register}
+					options={{
+						headerShown: false,
+					}}
+				/>
 			</Stack.Navigator>
 		</NavigationContainer>
 	);
