@@ -11,13 +11,7 @@ import Constants from 'expo-constants';
 import FontAwesome from '@expo/vector-icons/FontAwesome';
 import { Entypo } from '@expo/vector-icons';
 
-const Header = () => {
-	const [searchText, setSearchText] = useState('');
-	// search
-	const handleSearch = () => {
-		setSearchText('');
-	};
-
+const Header = ({ keyword, setKeyword }) => {
 	return (
 		<View
 			style={{
@@ -52,12 +46,12 @@ const Header = () => {
 					placeholder='Search any product...'
 					placeholderTextColor='#ababab'
 					style={styles.inputBox}
-					value={searchText}
+					value={keyword}
 					onChangeText={Text => {
-						setSearchText(Text);
+						setKeyword(Text);
 					}}
 				/>
-				<TouchableOpacity style={styles.searchBtn} onPress={handleSearch}>
+				<TouchableOpacity style={styles.searchBtn}>
 					<FontAwesome name='search' style={styles.icon} />
 				</TouchableOpacity>
 			</View>

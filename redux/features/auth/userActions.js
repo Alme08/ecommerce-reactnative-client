@@ -61,7 +61,7 @@ export const getUserData = () => async dispatch => {
 		dispatch({
 			type: 'getUserDataRequest',
 		});
-		const { data } = await axios.post(`${server}/user/profile`);
+		const { data } = await axios.get(`${server}/user/profile`);
 		dispatch({
 			type: 'getUserDataSuccess',
 			payload: data?.user,
