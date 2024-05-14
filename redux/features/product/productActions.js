@@ -20,3 +20,23 @@ export const getAllProductData = () => async dispatch => {
 		});
 	}
 };
+
+
+export const getProductData = (id) => async dispatch => {
+	console.log(id)
+	try {
+		dispatch({
+			type: 'getProductDataRequest',
+		});
+		const { data } = await axios.get(`${server}/product/${id}`);
+		dispatch({
+			type: 'getProductDataSuccess',
+			payload: data?.product,
+		}); 
+	} catch (error) {
+		dispatch({
+			type: 'getProductDataFail',
+			payload: error.response.data.message,
+		});
+	}
+};
