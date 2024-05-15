@@ -11,31 +11,70 @@ import React, { useState } from 'react';
 import Layout from '../../components/Layout/Layout';
 import { userData } from '../../data/userData';
 import InputBox from '../../components/Form/InputBox';
+import { useRoute } from '@react-navigation/native';
+import { useDispatch } from 'react-redux';
+import {
+	updateProfile,
+	updateProfilePic,
+} from '../../redux/features/auth/userActions';
+import { useReduxStateHook } from '../../hooks/customHook';
+import * as ImagePicker from 'expo-image-picker';
+import FormData from 'form-data';
 
 const Profile = ({ navigation }) => {
-	const [email, setEmail] = useState(userData.email);
-	const [profilePic, setProfilePic] = useState(userData.profilePic);
-	const [password, setPassword] = useState(userData.password);
-	const [name, setName] = useState(userData.name);
-	const [address, setAddress] = useState(userData.address);
-	const [city, setCity] = useState(userData.city);
-	const [contact, setContact] = useState(userData.contact);
+	const dispatch = useDispatch();
+	const { params } = useRoute();
+
+	const user = params.user;
+	const [email, setEmail] = useState(user.email);
+	const [profilePic, setProfilePic] = useState(user.profilePic.url);
+	const [name, setName] = useState(user.name);
+	const [address, setAddress] = useState(user.address);
+	const [city, setCity] = useState(user.city);
+	const [phone, setPhone] = useState(user.phone);
+	const [file, setFile] = useState('');
 
 	//update
 	const handleUpdate = () => {
-		if (!email || !password || !name || !address || !city || !contact) {
+		if (!email || !name || !address || !city || !phone) {
 			alert('Please fill all the fields');
 		}
-		alert('Profile updated successfully');
-		navigation.navigate('account');
+		const formData = {
+			email,
+			name,
+			address,
+			city,
+			phone,
+		};
+		if (profilePic !== user.profilePic.url) {
+			dispatch(updateProfilePic(file.assets[0]));
+		}
+		dispatch(updateProfile(formData));
 	};
+
+	const loading = useReduxStateHook(navigation, 'login');
 	return (
 		<Layout>
 			<View style={styles.container}>
 				<ScrollView>
 					<View style={styles.imageContainer}>
 						<Image style={styles.image} source={{ uri: profilePic }} />
-						<Pressable onPress={() => alert('profile dailogbox')}>
+						<Pressable
+							onPress={async () => {
+								result = await ImagePicker.launchImageLibraryAsync({
+									mediaTypes: ImagePicker.MediaTypeOptions.All,
+									allowsEditing: true,
+									aspect: [4, 3],
+									quality: 1,
+									base64: true,
+								});
+
+								if (!result.canceled) {
+									setProfilePic(result.assets[0].uri);
+									setFile(result);
+								}
+							}}
+						>
 							<Text style={{ color: 'red' }}>Update your profile pic</Text>
 						</Pressable>
 					</View>
@@ -52,12 +91,6 @@ const Profile = ({ navigation }) => {
 						autoComplete={'email'}
 					/>
 					<InputBox
-						value={password}
-						setValue={setPassword}
-						placeholder={'Enter your password'}
-						secureTextEntry={true}
-					/>
-					<InputBox
 						value={address}
 						setValue={setAddress}
 						placeholder={'Enter your address'}
@@ -70,8 +103,8 @@ const Profile = ({ navigation }) => {
 						autoComplete={'country'}
 					/>
 					<InputBox
-						value={contact}
-						setValue={setContact}
+						value={phone}
+						setValue={setPhone}
 						placeholder={'Enter your contact number'}
 						autoComplete={'tel'}
 					/>
@@ -96,8 +129,9 @@ const styles = StyleSheet.create({
 	},
 	image: {
 		height: 100,
-		width: '100%',
-		resizeMode: 'contain',
+		width: 100,
+		// resizeMode: 'cover',
+		borderRadius: 100,
 	},
 	btnUpdate: {
 		backgroundColor: '#000',
