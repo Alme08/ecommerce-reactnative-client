@@ -92,3 +92,48 @@ export const logout = () => async dispatch => {
 		});
 	}
 };
+
+// UPDATE PROFILE ACTION
+export const updateProfile = formData => async dispatch => {
+	try {
+		dispatch({
+			type: 'updateProfileRequest',
+		});
+		const { data } = await axios.put(
+			`${server}/user/profile-update/`,
+			formData
+		);
+		dispatch({
+			type: 'updateProfileSuccess',
+			payload: data.message,
+		});
+	} catch (error) {
+		dispatch({
+			type: 'updateProfileFail',
+			payload: error.response.data.message,
+		});
+	}
+};
+
+// UPDATE PROFILE PIC ACTION
+export const updateProfilePic = file => async dispatch => {
+	try {
+		dispatch({
+			type: 'updateProfilePicRequest',
+		});
+		console.log(file);
+		const { data } = await axios.post(
+			`${server}/user/update-profile-pic`,
+			file
+		);
+		dispatch({
+			type: 'updateProfilePicSuccess',
+			payload: data.message,
+		});
+	} catch (error) {
+		dispatch({
+			type: 'updateProfilePicFail',
+			payload: error.response.data.message,
+		});
+	}
+};
