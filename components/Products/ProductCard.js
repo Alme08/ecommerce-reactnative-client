@@ -28,13 +28,13 @@ const ProductCard = ({ product }) => {
 						style={styles.btn}
 						onPress={() => handleMoreButton(product?._id)}
 					>
-						<Text style={styles.btnText}>Details</Text>
+						<Text style={styles.btnText}>Detalles</Text>
 					</TouchableOpacity>
 					<TouchableOpacity
 						style={styles.btnCart}
 						onPress={() => handleAddToCArt()}
 					>
-						<Text style={[styles.btnText, { color: '#fff' }]}>Add to cart</Text>
+						<Text style={[styles.btnText, { color: '#fff' }]}>Añadir</Text>
 					</TouchableOpacity>
 				</View>
 			</View>

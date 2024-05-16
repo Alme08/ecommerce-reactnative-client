@@ -12,7 +12,7 @@ const Notifications = () => {
 					height: '100%',
 				}}
 			>
-				<Text>Oops! You don't have any notification.</Text>
+				<Text>Oops! No tienes ninguna notificación.</Text>
 			</View>
 		</Layout>
 	);

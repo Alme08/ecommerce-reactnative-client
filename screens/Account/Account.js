@@ -19,32 +19,32 @@ const Account = ({ navigation }) => {
 					style={styles.image}
 				/>
 				<View style={{ justifyContent: 'center', alignItems: 'center' }}>
-					<Text style={styles.name}>Hi, {user.name}</Text>
-					<Text>email: {user.email}</Text>
-					<Text>contact: {user.phone}</Text>
+					<Text style={styles.name}>Hola, {user.name}</Text>
+					<Text>E-mail: {user.email}</Text>
+					<Text>Número: {user.phone}</Text>
 				</View>
 				<View style={styles.btnContainer}>
-					<Text style={styles.heading}>Account settings</Text>
+					<Text style={styles.heading}>Configuración</Text>
 					<TouchableOpacity
 						style={styles.btn}
 						onPress={() => navigation.navigate('profile', { user: user })}
 					>
 						<AntDesign name='edit' style={styles.btnText} />
-						<Text style={styles.btnText}>Edit Profile</Text>
+						<Text style={styles.btnText}>Editar Perfil</Text>
 					</TouchableOpacity>
 					<TouchableOpacity
 						style={styles.btn}
 						onPress={() => navigation.navigate('myorders', { id: user._id })}
 					>
 						<AntDesign name='bars' style={styles.btnText} />
-						<Text style={styles.btnText}>My Orders</Text>
+						<Text style={styles.btnText}>Mis Ordenes</Text>
 					</TouchableOpacity>
 					<TouchableOpacity
 						style={styles.btn}
 						onPress={() => navigation.navigate('notifications')}
 					>
 						<AntDesign name='bells' style={styles.btnText} />
-						<Text style={styles.btnText}>Notifications</Text>
+						<Text style={styles.btnText}>Notificaciones</Text>
 					</TouchableOpacity>
 					{user.role === 'admin' && (
 						<TouchableOpacity
@@ -54,7 +54,7 @@ const Account = ({ navigation }) => {
 							}
 						>
 							<AntDesign name='laptop' style={styles.btnText} />
-							<Text style={styles.btnText}>Admin Panel</Text>
+							<Text style={styles.btnText}>Panel de Administrador</Text>
 						</TouchableOpacity>
 					)}
 				</View>

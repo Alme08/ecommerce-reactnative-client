@@ -43,7 +43,7 @@ const Header = ({ keyword, setKeyword }) => {
 			</View>
 			<View style={styles.container}>
 				<TextInput
-					placeholder='Search any product...'
+					placeholder='Buscar cualquier producto...'
 					placeholderTextColor='#ababab'
 					style={styles.inputBox}
 					value={keyword}

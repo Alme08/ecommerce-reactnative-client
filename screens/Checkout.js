@@ -13,16 +13,18 @@ const Checkout = ({ navigation }) => {
 	return (
 		<Layout>
 			<View style={styles.container}>
-				<Text style={styles.heading}>Payment Options</Text>
-				<Text style={styles.price}>Total Amount : 101$</Text>
+				<Text style={styles.heading}>Opciones de pago</Text>
+				<Text style={styles.price}>Cantidad Total : 101$</Text>
 				<View style={styles.paymentCard}>
-					<Text style={styles.paymentHeading}>Select your Payment method</Text>
+					<Text style={styles.paymentHeading}>
+						Selecciona tus métodos de pago
+					</Text>
 					<TouchableOpacity style={styles.paymentBtn} onPress={handleCOD}>
-						<Text style={styles.paymentBtnText}>Cash on delivery</Text>
+						<Text style={styles.paymentBtnText}>Efectivo</Text>
 					</TouchableOpacity>
 					<TouchableOpacity style={styles.paymentBtn} onPress={handleOnline}>
 						<Text style={styles.paymentBtnText}>
-							Online (CREDIT | DEBIT CARD)
+							Online (TARJETA CREDITO | DEBITO)
 						</Text>
 					</TouchableOpacity>
 				</View>

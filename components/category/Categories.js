@@ -34,7 +34,7 @@ const Categories = ({ categories, category, setCategory }) => {
 					justifyContent: 'space-between',
 				}}
 			>
-				<Text style={{ fontSize: 20, fontWeight: 600 }}>All Featured</Text>
+				<Text style={{ fontSize: 20, fontWeight: 600 }}>Todo destacado</Text>
 				<View style={{ flexDirection: 'row', gap: 10 }}>
 					<TouchableOpacity
 						style={{
@@ -48,7 +48,7 @@ const Categories = ({ categories, category, setCategory }) => {
 							flexDirection: 'row',
 						}}
 					>
-						<Text>Sort</Text>
+						<Text>Ordenar</Text>
 						<FontAwesome5 name='sort' size={20} />
 					</TouchableOpacity>
 					<TouchableOpacity
@@ -63,7 +63,7 @@ const Categories = ({ categories, category, setCategory }) => {
 							flexDirection: 'row',
 						}}
 					>
-						<Text>Filter</Text>
+						<Text>Filtrar</Text>
 						<FontAwesome5 name='filter' size={17} />
 					</TouchableOpacity>
 				</View>

@@ -38,9 +38,7 @@ export default function Main() {
 	}
 	return (
 		<NavigationContainer>
-			{console.log('before', isAuth)}
 			<Stack.Navigator initialRouteName={isAuth ? 'home' : 'login'}>
-				{console.log('after', isAuth)}
 				<Stack.Screen
 					name='home'
 					component={Home}
