@@ -1,16 +1,23 @@
 import { ScrollView, StyleSheet, Text, View } from 'react-native';
-import React from 'react';
+import React, { useEffect } from 'react';
 import Layout from '../../components/Layout/Layout';
-import { orderData } from '../../data/orderData';
+import { useDispatch, useSelector } from 'react-redux';
 import OrderItem from '../../components/Form/OrderItem';
+import { getAllOrdersData } from '../../redux/features/orders/orderActions';
 
 const MyOrders = () => {
+	const dispatch = useDispatch();
+	const { orders } = useSelector(state => state.orders);
+	useEffect(() => {
+		dispatch(getAllOrdersData());
+		console.log(orders);
+	}, [dispatch]);
 	return (
 		<Layout>
 			<View style={styles.container}>
-				<Text style={styles.heading}>My Orders</Text>
+				<Text style={styles.heading}>Mis Ordenes</Text>
 				<ScrollView>
-					{orderData.map(order => (
+					{orders?.map(order => (
 						<OrderItem key={order._id} order={order} />
 					))}
 				</ScrollView>
@@ -18,8 +25,6 @@ const MyOrders = () => {
 		</Layout>
 	);
 };
-
-export default MyOrders;
 
 const styles = StyleSheet.create({
 	container: {
@@ -32,3 +37,5 @@ const styles = StyleSheet.create({
 		fontSize: 20,
 	},
 });
+
+export default MyOrders;
