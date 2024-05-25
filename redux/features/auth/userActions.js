@@ -137,3 +137,26 @@ export const updateProfilePic = file => async dispatch => {
 		});
 	}
 };
+
+// GET ALL USERS ACTION
+export const getAllUsersData = keyword => async dispatch => {
+	try {
+		dispatch({
+			type: 'getAllUsersDataRequest',
+		});
+		const { data } = await axios.get(`${server}/user/get-all`, {
+			params: {
+				keyword: keyword,
+			},
+		});
+		dispatch({
+			type: 'getAllUsersDataSuccess',
+			payload: data?.users,
+		});
+	} catch (error) {
+		dispatch({
+			type: 'getAllUsersDataFail',
+			payload: error.response.data.message,
+		});
+	}
+};
