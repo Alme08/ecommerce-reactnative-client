@@ -89,4 +89,16 @@ export const userReducer = createReducer({ token: null }, builder => {
 	builder.addCase('updateProfilePicFail', (state, action) => {
 		state.error = action.payload;
 	});
+
+	// get users data
+	builder.addCase('getAllUsersDataRequest', (state, action) => {
+		state.loading = true;
+	});
+	builder.addCase('getAllUsersDataSuccess', (state, action) => {
+		state.users = action.payload;
+		state.loading = false;
+	});
+	builder.addCase('getAllUsersDataFail', (state, action) => {
+		state.error = action.payload;
+	});
 });
