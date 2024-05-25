@@ -24,7 +24,7 @@ const Footer = () => {
 					name='home'
 				/>
 				<Text style={[styles.iconText, route.name === 'home' && styles.active]}>
-					Home
+					Inicio
 				</Text>
 			</TouchableOpacity>
 			<TouchableOpacity
@@ -41,7 +41,7 @@ const Footer = () => {
 						route.name === 'notifications' && styles.active,
 					]}
 				>
-					Notifications
+					Notificaciones
 				</Text>
 			</TouchableOpacity>
 			<TouchableOpacity
@@ -55,7 +55,7 @@ const Footer = () => {
 				<Text
 					style={[styles.iconText, route.name === 'account' && styles.active]}
 				>
-					Account
+					Cuenta
 				</Text>
 			</TouchableOpacity>
 			<TouchableOpacity
@@ -67,7 +67,7 @@ const Footer = () => {
 					name='shopping-cart'
 				/>
 				<Text style={[styles.iconText, route.name === 'cart' && styles.active]}>
-					Cart
+					Carrito
 				</Text>
 			</TouchableOpacity>
 			<TouchableOpacity
@@ -78,7 +78,7 @@ const Footer = () => {
 				}}
 			>
 				<Feather style={styles.icon} name='log-out' />
-				<Text style={styles.iconText}>logout</Text>
+				<Text style={styles.iconText}>Salir</Text>
 			</TouchableOpacity>
 		</View>
 	);

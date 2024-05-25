@@ -65,4 +65,28 @@ export const userReducer = createReducer({ token: null }, builder => {
 		state.isAuth = false;
 		state.error = action.payload;
 	});
+
+	// Update profile
+	builder.addCase('updateProfileRequest', (state, action) => {
+		state.loading = true;
+	});
+	builder.addCase('updateProfileSuccess', (state, action) => {
+		state.loading = false;
+		state.message = action.payload;
+	});
+	builder.addCase('updateProfileFail', (state, action) => {
+		state.error = action.payload;
+	});
+
+	// Update profile pic
+	builder.addCase('updateProfilePicRequest', (state, action) => {
+		state.loading = true;
+	});
+	builder.addCase('updateProfilePicSuccess', (state, action) => {
+		state.loading = false;
+		state.message = action.payload;
+	});
+	builder.addCase('updateProfilePicFail', (state, action) => {
+		state.error = action.payload;
+	});
 });

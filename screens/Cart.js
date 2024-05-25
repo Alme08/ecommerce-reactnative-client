@@ -17,8 +17,8 @@ const Cart = ({ navigation }) => {
 		<Layout>
 			<Text style={styles.heading}>
 				{cartItems?.length > 0
-					? `You have ${cartItems?.length} item left in your cart.`
-					: 'Your cart is empty.'}
+					? `Tienes ${cartItems?.length} producto en tu carrito.`
+					: 'Tu carrito está vacío.'}
 			</Text>
 			{cartItems?.length > 0 && (
 				<>
@@ -28,17 +28,17 @@ const Cart = ({ navigation }) => {
 						))}
 					</ScrollView>
 					<View>
-						<PriceTable title={'Price'} price={999} />
-						<PriceTable title={'Tax'} price={1} />
-						<PriceTable title={'Price'} price={1} />
+						<PriceTable title={'Precio'} price={999} />
+						<PriceTable title={'IVA'} price={1} />
+						<PriceTable title={'Precio'} price={1} />
 						<View style={styles.grandTotal}>
-							<PriceTable title={'Grand Total'} price={1001} />
+							<PriceTable title={'Total'} price={1001} />
 						</View>
 						<TouchableOpacity
 							style={styles.btnCheckout}
 							onPress={() => navigation.navigate('checkout')}
 						>
-							<Text style={styles.btnCheckoutText}>CHECKOUT</Text>
+							<Text style={styles.btnCheckoutText}>COMPROBAR</Text>
 						</TouchableOpacity>
 					</View>
 				</>
