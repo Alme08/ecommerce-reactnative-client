@@ -2,6 +2,7 @@ import { configureStore } from '@reduxjs/toolkit';
 import { userReducer } from './features/auth/userReducer';
 import { categoryReducer } from './features/category/categoryReducer';
 import { productReducer } from './features/product/productReducer';
+import { productDetailReducer } from './features/product/productReducer';
 
 export default configureStore({
 	reducer: {
