@@ -3,13 +3,15 @@ import { userReducer } from './features/auth/userReducer';
 import { categoryReducer } from './features/category/categoryReducer';
 import { productReducer } from './features/product/productReducer';
 import { productDetailReducer } from './features/product/productReducer';
+import { orderReducer } from './features/orders/orderReducer';
 
 export default configureStore({
 	reducer: {
 		user: userReducer,
 		categories: categoryReducer,
 		products: productReducer,
-		product: productDetailReducer
+		product: productDetailReducer,
+		orders: orderReducer,
 	},
 });
 

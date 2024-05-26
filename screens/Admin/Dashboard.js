@@ -25,10 +25,6 @@ const Dashboard = () => {
 						<AntDesign name='bars' style={styles.icon} />
 						<Text style={styles.btnText}>Manage Orders</Text>
 					</TouchableOpacity>
-					<TouchableOpacity style={styles.btn}>
-						<AntDesign name='info' style={styles.icon} />
-						<Text style={styles.btnText}>About App</Text>
-					</TouchableOpacity>
 				</View>
 			</View>
 		</Layout>
