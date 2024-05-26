@@ -9,6 +9,7 @@ export default configureStore({
 		user: userReducer,
 		categories: categoryReducer,
 		products: productReducer,
+		product: productDetailReducer
 	},
 });
 

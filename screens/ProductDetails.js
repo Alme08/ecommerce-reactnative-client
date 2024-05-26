@@ -3,7 +3,6 @@ import {
   Text,
   Image,
   StyleSheet,
-  Touchable,
   TouchableOpacity,
 } from "react-native";
 import React, { useEffect, useState } from "react";
@@ -12,29 +11,24 @@ import Layout from "../components/Layout/Layout";
 import { useDispatch, useSelector } from 'react-redux';
 
 const ProductDetails = ({ route }) => {
-	const dispatch = useDispatch();
+  const dispatch = useDispatch();
   const [productDetails, setProductDetails] = useState({});
   const [qty, setQty] = useState(1);
-  const { product } = useSelector(state => state.product);
+  const { product, loading } = useSelector(state => state.product);
 
   const { params } = route;
 
   useEffect(() => {
-	dispatch(getProductData(params?._id));
-}, [dispatch]);
-
-console.log(product)
-
-  console.log("sdfsedf");
+    if (params?._id) {
+      dispatch(getProductData(params._id));
+    }
+  }, [dispatch, params?._id]);
 
   useEffect(() => {
-    //find product details
-    const getProduct = productsData.find((p) => {
-      return p?._id === params?._id;
-    });
-
-    setProductDetails(getProduct);
-  }, [params?._id]);
+    if (product) {
+      setProductDetails(product);
+    }
+  }, [product]);
 
   const handleAddQty = () => {
     if (qty === 10) {
@@ -42,26 +36,47 @@ console.log(product)
     }
     setQty((prev) => prev + 1);
   };
+
   const handleRemoveQty = () => {
     if (qty <= 1) return;
     setQty((prev) => prev - 1);
   };
 
+  if (loading) {
+    return (
+      <Layout >
+        <Text style={styles.loading}>
+          Cargando...
+        </Text>
+      </Layout>
+    );
+  }
+
+  if (!productDetails || !productDetails.images || !productDetails.images[0]) {
+    return (
+      <Layout>
+        <Text style={styles.loading}>
+          Error: Producto no encontrado o sin imagen.
+        </Text>
+      </Layout>
+    );
+  }
+
   return (
     <Layout>
-      <Image source={{ uri: productDetails?.imageUrl }} style={styles.image} />
+      <Image source={{ uri: productDetails.images[0].url }} style={styles.image} />
       <View style={styles.container}>
-        <Text style={styles.title}>{productDetails?.name}</Text>
-        <Text style={styles.title}>Price: {productDetails?.price}$</Text>
-        <Text style={styles.desc}>{productDetails?.description}</Text>
+        <Text style={styles.title}>{productDetails.name}</Text>
+        <Text style={styles.title}>Precio: {productDetails.price}$</Text>
+        <Text style={styles.desc}>{productDetails.description}</Text>
         <View style={styles.btnContainer}>
           <TouchableOpacity
             style={styles.btnCart}
             onPress={() => alert(`${qty} items added to cart`)}
-            disabled={productDetails?.existence < qty}
+            disabled={productDetails.stock < qty}
           >
             <Text style={styles.btnCartText}>
-              {productDetails?.existence < qty ? "Out of stock" : "Add to cart"}
+              {productDetails.stock < qty ? "Agotado" : "Añadir al carrito"}
             </Text>
           </TouchableOpacity>
           <View style={styles.btnContainer}>
@@ -83,6 +98,14 @@ const styles = StyleSheet.create({
   image: {
     height: 330,
     width: "100%",
+  },
+  loading: {
+    textAlign: "center",
+    margin: "auto",
+    paddingTop: 250,
+    width: 300,
+    height: 500,
+    fontSize: 40
   },
   container: {
     marginVertical: 15,
@@ -108,7 +131,6 @@ const styles = StyleSheet.create({
   btnCart: {
     width: 180,
     backgroundColor: "#000",
-    // marginVertical: 10,
     borderRadius: 5,
     height: 40,
     justifyContent: "center",

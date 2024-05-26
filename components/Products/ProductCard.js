@@ -22,7 +22,7 @@ const ProductCard = ({ product }) => {
 					source={{ uri: product?.images[0].url }}
 				/>
 				<Text style={styles.cardTitle}>{product?.name}</Text>
-				<Text style={styles.cardDesc}>${product?.price}</Text>
+				<Text style={styles.cardDesc}>Precio: {product?.price}$</Text>
 				<View style={styles.btnContainer}>
 					<TouchableOpacity
 						style={styles.btn}
@@ -48,7 +48,6 @@ const styles = StyleSheet.create({
 		borderRadius: 20,
 		borderColor: 'lightgray',
 		marginVertical: 5,
-		marginHorizontal: 8,
 		width: 170,
 		height: 250,
 		padding: 10,
@@ -63,12 +62,11 @@ const styles = StyleSheet.create({
 	cardTitle: {
 		fontSize: 14,
 		fontWeight: 'bold',
-		marginBottom: 5,
+		marginBottom: 2,
 	},
 	cardDesc: {
 		fontSize: 13,
-		fontWeight: 'bold',
-		textAlign: 'center',
+		fontWeight: 'bold'
 	},
 	btnContainer: {
 		marginTop: 5,

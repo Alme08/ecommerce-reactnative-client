@@ -36,7 +36,7 @@ export const productDetailReducer = createReducer({}, builder => {
 		state.loading = true;
 	});
 	builder.addCase('getProductDataSuccess', (state, action) => {
-		state.products = action.payload;
+		state.product = action.payload;
 		state.loading = false;
 	});
 	builder.addCase('getProductDataFail', (state, action) => {

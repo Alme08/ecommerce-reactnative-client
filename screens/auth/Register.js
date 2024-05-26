@@ -45,59 +45,59 @@ const Register = ({ navigation }) => {
 	const loading = useReduxStateHook(navigation, 'login');
 	return (
 		<View style={styles.container}>
-			<Text style={styles.headerText}>Create an account</Text>
+			<Text style={styles.headerText}>Crea una cuenta</Text>
 			<InputBox
-				placeholder={'Enter your name'}
+				placeholder={'Ingresa tu nombre'}
 				value={name}
 				setValue={setName}
 				autoComplete={'name'}
 			/>
 			<InputBox
-				placeholder={'Enter your email'}
+				placeholder={'Ingresa tu correo electrónico'}
 				value={email}
 				setValue={setEmail}
 				autoComplete={'email'}
 			/>
 			<InputBox
-				placeholder={'Enter your Password'}
+				placeholder={'Ingresa tu contraseña'}
 				value={password}
 				setValue={setPassword}
 				secureTextEntry={true}
 			/>
 			<InputBox
-				placeholder={'Enter your address'}
+				placeholder={'Ingresa tu dirección'}
 				value={address}
 				setValue={setAddress}
 				autoComplete={'address-line1'}
 			/>
 			<InputBox
-				placeholder={'Enter your city'}
+				placeholder={'Ingresa tu ciudad'}
 				value={city}
 				setValue={setCity}
 				autoComplete={'country'}
 			/>
 			<InputBox
-				placeholder={'Enter your contact number'}
+				placeholder={'Ingrese tu número de contacto'}
 				value={phone}
 				setValue={setPhone}
 				autoComplete={'tel'}
 			/>
 			<InputBox
-				placeholder={'Enter your favourite food'}
+				placeholder={'Ingresa tu comida favorita'}
 				value={answer}
 				setValue={setAnswer}
 			/>
 			<View style={styles.btnContainer}>
 				<TouchableOpacity style={styles.loginBtn} onPress={handleRegister}>
-					<Text style={styles.loginBtnText}>Register</Text>
+					<Text style={styles.loginBtnText}>Registrate</Text>
 				</TouchableOpacity>
 				<Text>
-					I already have an account{' '}
+					Si ya tienes una cuenta,{' '}
 					<Text
 						onPress={() => navigation.navigate('login')}
 						style={{ color: 'blue' }}
 					>
-						Login
+						Inicia sesion
 					</Text>
 				</Text>
 			</View>
@@ -115,6 +115,7 @@ const styles = StyleSheet.create({
 		fontSize: 30,
 		fontWeight: '600',
 		marginBottom: 20,
+		textAlign: 'center'
 	},
 	btnContainer: {
 		justifyContent: 'center',

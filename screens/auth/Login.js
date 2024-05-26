@@ -38,30 +38,30 @@ const Login = ({ navigation }) => {
 	}
 	return (
 		<View style={styles.container}>
-			<Text style={styles.headerText}>Welcome Back!</Text>
+			<Text style={styles.headerText}>Inicia sesión</Text>
 			<InputBox
-				placeholder={'Enter your email'}
+				placeholder={'Ingresa tu correo'}
 				value={email}
 				setValue={setEmail}
 				autoComplete={'email'}
 			/>
 			<InputBox
-				placeholder={'Enter your Password'}
+				placeholder={'Ingresa tu contraseña'}
 				value={password}
 				setValue={setPassword}
 				secureTextEntry={true}
 			/>
 			<View style={styles.btnContainer}>
 				<TouchableOpacity style={styles.loginBtn} onPress={handleLogin}>
-					<Text style={styles.loginBtnText}>Login</Text>
+					<Text style={styles.loginBtnText}>Ingresar</Text>
 				</TouchableOpacity>
 				<Text>
-					Create an account{' '}
+					Crear una cuenta,{' '}
 					<Text
 						onPress={() => navigation.navigate('register')}
 						style={{ color: 'blue' }}
 					>
-						Sign Up
+						Registrate
 					</Text>
 				</Text>
 			</View>
@@ -71,7 +71,6 @@ const Login = ({ navigation }) => {
 
 const styles = StyleSheet.create({
 	container: {
-		// alignItems: 'center',
 		justifyContent: 'center',
 		height: '100%',
 	},
@@ -79,6 +78,7 @@ const styles = StyleSheet.create({
 		fontSize: 30,
 		fontWeight: '600',
 		marginBottom: 20,
+		textAlign: 'center'
 	},
 	btnContainer: {
 		justifyContent: 'center',
