@@ -4,6 +4,7 @@ import { categoryReducer } from './features/category/categoryReducer';
 import { productReducer } from './features/product/productReducer';
 import { productDetailReducer } from './features/product/productReducer';
 import { orderReducer } from './features/orders/orderReducer';
+import cartReducer from './features/cart/cartReducer';
 
 export default configureStore({
 	reducer: {
@@ -12,6 +13,7 @@ export default configureStore({
 		products: productReducer,
 		product: productDetailReducer,
 		orders: orderReducer,
+		cart: cartReducer,
 	},
 });
 

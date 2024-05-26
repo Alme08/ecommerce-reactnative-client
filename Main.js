@@ -34,7 +34,7 @@ export default function Main() {
 		getUserLocalData();
 	}, []);
 	if (loading) {
-		return <Text>Loading...</Text>;
+		return <Text>Cargando...</Text>;
 	}
 	return (
 		<NavigationContainer>
