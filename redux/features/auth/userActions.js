@@ -118,13 +118,23 @@ export const updateProfile = formData => async dispatch => {
 // UPDATE PROFILE PIC ACTION
 export const updateProfilePic = file => async dispatch => {
 	try {
+		let formData = new FormData();
+		formData.append('file', {
+			uri: file.uri,
+			type: file.mimeType,
+			name: file.fileName,
+		});
 		dispatch({
 			type: 'updateProfilePicRequest',
 		});
-		console.log(file);
 		const { data } = await axios.post(
 			`${server}/user/update-profile-pic`,
-			file
+			formData,
+			{
+				headers: {
+					'Content-Type': 'multipart/form-data',
+				},
+			}
 		);
 		dispatch({
 			type: 'updateProfilePicSuccess',
