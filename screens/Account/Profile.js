@@ -9,7 +9,6 @@ import {
 } from 'react-native';
 import React, { useState } from 'react';
 import Layout from '../../components/Layout/Layout';
-import { userData } from '../../data/userData';
 import InputBox from '../../components/Form/InputBox';
 import { useRoute } from '@react-navigation/native';
 import { useDispatch } from 'react-redux';
@@ -19,7 +18,6 @@ import {
 } from '../../redux/features/auth/userActions';
 import { useReduxStateHook } from '../../hooks/customHook';
 import * as ImagePicker from 'expo-image-picker';
-import FormData from 'form-data';
 
 const Profile = ({ navigation }) => {
 	const dispatch = useDispatch();
