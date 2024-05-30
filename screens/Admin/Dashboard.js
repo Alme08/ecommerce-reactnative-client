@@ -1,5 +1,5 @@
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import Layout from '../../components/Layout/Layout';
 import { AntDesign } from '@expo/vector-icons';
 import { useDispatch, useSelector } from 'react-redux';
@@ -7,8 +7,10 @@ import { getAllProductData } from '../../redux/features/product/productActions';
 import { getAllCategoryData } from '../../redux/features/category/categoryActions';
 import { getAllOrdersData } from '../../redux/features/orders/orderActions';
 import { getAllUsersData } from '../../redux/features/auth/userActions';
+import { useNavigation } from '@react-navigation/native';
 
 const Dashboard = () => {
+	const navigation = useNavigation();
 	// const [loading, setLoading] = useState(true);
 	const dispatch = useDispatch();
 	const { products } = useSelector(state => state.products);
@@ -25,26 +27,54 @@ const Dashboard = () => {
 		dispatch(getAllCategoryData());
 		// get all orders
 		dispatch(getAllOrdersData());
-	}, []);
+	}, [dispatch]);
 
 	return (
 		<Layout>
 			<View style={styles.main}>
 				<Text style={styles.heading}>Dashboard</Text>
 				<View style={styles.btnContainer}>
-					<TouchableOpacity style={styles.btn}>
+					<TouchableOpacity
+						style={styles.btn}
+						onPress={() => {
+							navigation.navigate('productForm', {
+								data: products,
+							});
+						}}
+					>
 						<AntDesign name='edit' style={styles.icon} />
 						<Text style={styles.btnText}>Productos {products?.length}</Text>
 					</TouchableOpacity>
-					<TouchableOpacity style={styles.btn}>
+					<TouchableOpacity
+						style={styles.btn}
+						onPress={() => {
+							navigation.navigate('adminForm', {
+								data: categories,
+							});
+						}}
+					>
 						<AntDesign name='edit' style={styles.icon} />
 						<Text style={styles.btnText}>Categorias {categories?.length}</Text>
 					</TouchableOpacity>
-					<TouchableOpacity style={styles.btn}>
+					<TouchableOpacity
+						style={styles.btn}
+						onPress={() => {
+							navigation.navigate('adminForm', {
+								data: users,
+							});
+						}}
+					>
 						<AntDesign name='user' style={styles.icon} />
 						<Text style={styles.btnText}>Usuarios {users?.length}</Text>
 					</TouchableOpacity>
-					<TouchableOpacity style={styles.btn}>
+					<TouchableOpacity
+						style={styles.btn}
+						onPress={() => {
+							navigation.navigate('adminForm', {
+								data: orders,
+							});
+						}}
+					>
 						<AntDesign name='bars' style={styles.icon} />
 						<Text style={styles.btnText}>Ordenes {orders?.length}</Text>
 					</TouchableOpacity>
