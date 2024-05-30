@@ -103,7 +103,7 @@ const styles = StyleSheet.create({
 		fontSize: 14,
 	},
 	active: {
-		color: 'blue',
+		color: '#ce7100',
 	},
 });
 
