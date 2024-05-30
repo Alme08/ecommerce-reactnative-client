@@ -7,6 +7,7 @@ const InputBox = ({
 	autoComplete,
 	placeholder,
 	secureTextEntry,
+	keyboardType,
 }) => {
 	return (
 		<View style={styles.container}>
@@ -16,6 +17,7 @@ const InputBox = ({
 				placeholder={placeholder}
 				autoCorrect={false}
 				secureTextEntry={secureTextEntry}
+				keyboardType={keyboardType}
 				value={value}
 				onChangeText={text => setValue(text)}
 			/>
@@ -32,7 +34,7 @@ const styles = StyleSheet.create({
 		marginVertical: 10,
 	},
 	input: {
-		width: '80%',
+		width: '100%',
 		backgroundColor: '#fff',
 		height: 40,
 		paddingLeft: 10,
