@@ -20,3 +20,6 @@ export default configureStore({
 // HOST
 export const server =
 	'https://ecommerce-reactnative-server.onrender.com/api/v1';
+// 35.160.120.126
+// 44.233.151.27
+// 34.211.200.85
