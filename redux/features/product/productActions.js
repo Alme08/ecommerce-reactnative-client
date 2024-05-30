@@ -1,5 +1,6 @@
 import { server } from '../../store';
 import axios from 'axios';
+import FormData from 'form-data';
 
 // GET ALL PRODUCTS DATA ACTION
 
@@ -26,9 +27,81 @@ export const getAllProductData = (keyword, category) => async dispatch => {
 	}
 };
 
+// CREATE PRODUCT
+export const createProduct = (form, file) => async dispatch => {
+	try {
+		let formData = new FormData();
+		formData.append('file', {
+			uri: file.uri,
+			type: file.mimeType,
+			name: file.fileName,
+		});
+		formData.append('name', form.name);
+		formData.append('description', form.description);
+		formData.append('price', form.price);
+		formData.append('stock', form.stock);
+		formData.append('category', form.category);
 
-export const getProductData = (id) => async dispatch => {
-	console.log(id)
+		dispatch({
+			type: 'createProductRequest',
+		});
+		const { data } = await axios.post(`${server}/product/create`, formData, {
+			headers: {
+				'Content-Type': 'multipart/form-data',
+			},
+		});
+
+		dispatch({
+			type: 'createProductSuccess',
+			payload: data.message,
+		});
+
+		return data.productId;
+	} catch (error) {
+		console.log(error);
+		dispatch({
+			type: 'createProductFail',
+			payload: error.response.data.message,
+		});
+	}
+};
+
+// UPDATE PRODUCT IMAGE
+export const updateProductPic = (file, productId) => async dispatch => {
+	try {
+		let formData = new FormData();
+		formData.append('file', {
+			uri: file.uri,
+			type: file.mimeType,
+			name: file.fileName,
+		});
+		dispatch({
+			type: 'updateProductPicRequest',
+		});
+		const { data } = await axios.put(
+			`${server}/product/image/${productId}`,
+			formData,
+			{
+				headers: {
+					'Content-Type': 'multipart/form-data',
+				},
+			}
+		);
+		dispatch({
+			type: 'updateProductPicSuccess',
+			payload: data.message,
+		});
+	} catch (error) {
+		dispatch({
+			type: 'updateProductPicFail',
+			payload: error.response.data.message,
+		});
+	}
+};
+
+// GET PRODUCT DATA
+export const getProductData = id => async dispatch => {
+	console.log(id);
 	try {
 		dispatch({
 			type: 'getProductDataRequest',
@@ -37,7 +110,7 @@ export const getProductData = (id) => async dispatch => {
 		dispatch({
 			type: 'getProductDataSuccess',
 			payload: data?.product,
-		}); 
+		});
 	} catch (error) {
 		dispatch({
 			type: 'getProductDataFail',
