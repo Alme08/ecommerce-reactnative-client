@@ -1,5 +1,5 @@
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import React, { useEffect } from 'react';
+import React, { useCallback } from 'react';
 import Layout from '../../components/Layout/Layout';
 import { AntDesign } from '@expo/vector-icons';
 import { useDispatch, useSelector } from 'react-redux';
@@ -7,7 +7,7 @@ import { getAllProductData } from '../../redux/features/product/productActions';
 import { getAllCategoryData } from '../../redux/features/category/categoryActions';
 import { getAllOrdersData } from '../../redux/features/orders/orderActions';
 import { getAllUsersData } from '../../redux/features/auth/userActions';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useFocusEffect } from '@react-navigation/native';
 
 const Dashboard = () => {
 	const navigation = useNavigation();
@@ -18,16 +18,18 @@ const Dashboard = () => {
 	const { orders } = useSelector(state => state.orders);
 	const { users } = useSelector(state => state.user);
 
-	useEffect(() => {
-		// get all users
-		dispatch(getAllUsersData());
-		// get all products
-		dispatch(getAllProductData());
-		// get all categories
-		dispatch(getAllCategoryData());
-		// get all orders
-		dispatch(getAllOrdersData());
-	}, [dispatch]);
+	useFocusEffect(
+		useCallback(() => {
+			// get all users
+			dispatch(getAllUsersData());
+			// get all products
+			dispatch(getAllProductData());
+			// get all categories
+			dispatch(getAllCategoryData());
+			// get all orders
+			dispatch(getAllOrdersData());
+		}, [dispatch])
+	);
 
 	return (
 		<Layout>
