@@ -6,6 +6,7 @@ import { createProduct } from '../../redux/features/product/productActions';
 import InputBox from '../../components/Form/InputBox';
 import { useNavigation } from '@react-navigation/native';
 import { FontAwesome6 } from '@expo/vector-icons';
+import { AntDesign } from '@expo/vector-icons';
 import * as ImagePicker from 'expo-image-picker';
 
 const CreateProduct = () => {
@@ -18,6 +19,10 @@ const CreateProduct = () => {
 	const [stock, setStock] = useState('');
 	const [category, setCategory] = useState('');
 	const [images, setImages] = useState([]);
+
+	const deleteImage = () => {
+		setImages([]);
+	};
 
 	const handleSend = async () => {
 		if (
@@ -94,11 +99,19 @@ const CreateProduct = () => {
 				<Text style={styles.textInput}>Imágenes:</Text>
 				<View style={{ flexDirection: 'row', gap: 10 }}>
 					{images.map((img, index) => (
-						<Image
-							style={styles.image}
-							key={index}
-							source={{ uri: img.assets[0].uri }}
-						/>
+						<>
+							<TouchableOpacity
+								style={styles.deleteImage}
+								onPress={deleteImage}
+							>
+								<AntDesign name='closecircle' color={'red'} size={20} />
+							</TouchableOpacity>
+							<Image
+								style={styles.image}
+								key={index}
+								source={{ uri: img.assets[0].uri }}
+							></Image>
+						</>
 					))}
 					{images.length < 1 && (
 						<TouchableOpacity
@@ -176,6 +189,14 @@ const styles = StyleSheet.create({
 		height: 100,
 		width: 80,
 		borderRadius: 10,
+	},
+	deleteImage: {
+		position: 'absolute',
+		zIndex: 1,
+		backgroundColor: '#fff',
+		borderRadius: 50,
+		margin: 5,
+		left: 50,
 	},
 	button: {
 		marginHorizontal: 'auto',
