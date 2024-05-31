@@ -18,6 +18,7 @@ import { useEffect, useState } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import FormProducts from './screens/Admin/FormProducts';
 import CreateProduct from './screens/Admin/createProduct';
+import EditProduct from './screens/Admin/editProduct';
 
 //Routes
 const Stack = createNativeStackNavigator();
@@ -62,6 +63,7 @@ export default function Main() {
 				<Stack.Screen name='cart' component={Cart} />
 				<Stack.Screen name='productForm' component={FormProducts} />
 				<Stack.Screen name='createProduct' component={CreateProduct} />
+				<Stack.Screen name='editProduct' component={EditProduct} />
 				<Stack.Screen
 					name='login'
 					component={Login}
