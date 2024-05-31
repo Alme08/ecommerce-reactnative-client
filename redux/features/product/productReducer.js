@@ -44,6 +44,30 @@ export const productReducer = createReducer({}, builder => {
 	builder.addCase('updateProductPicFail', (state, action) => {
 		state.error = action.payload;
 	});
+
+	//update product
+	builder.addCase('updateProductRequest', (state, action) => {
+		state.loading = true;
+	});
+	builder.addCase('updateProductSuccess', (state, action) => {
+		state.loading = false;
+		state.message = action.payload;
+	});
+	builder.addCase('updateProductFail', (state, action) => {
+		state.error = action.payload;
+	});
+
+	//delete image
+	builder.addCase('deleteImageRequest', (state, action) => {
+		state.loading = true;
+	});
+	builder.addCase('deleteImageSuccess', (state, action) => {
+		state.loading = false;
+		state.message = action.payload;
+	});
+	builder.addCase('deleteImageFail', (state, action) => {
+		state.error = action.payload;
+	});
 });
 
 export const productDetailReducer = createReducer({}, builder => {
