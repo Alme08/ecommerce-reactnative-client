@@ -99,6 +99,27 @@ export const updateProductPic = (file, productId) => async dispatch => {
 	}
 };
 
+// DELETE PRODUCT IMAGE
+export const deleteProductImage = (productId, imageId) => async dispatch => {
+	try {
+		dispatch({
+			type: 'deleteImageRequest',
+		});
+		const { data } = await axios.delete(
+			`${server}/product/delete-image/${productId}?id=${imageId}`
+		);
+		dispatch({
+			type: 'deleteImageSuccess',
+			payload: data.message,
+		});
+	} catch (error) {
+		dispatch({
+			type: 'deleteImageFail',
+			payload: error.response.data.message,
+		});
+	}
+};
+
 // GET PRODUCT DATA
 export const getProductData = id => async dispatch => {
 	console.log(id);
@@ -114,6 +135,24 @@ export const getProductData = id => async dispatch => {
 	} catch (error) {
 		dispatch({
 			type: 'getProductDataFail',
+			payload: error.response.data.message,
+		});
+	}
+};
+
+export const updateProduct = (form, productId) => async dispatch => {
+	try {
+		dispatch({
+			type: 'updateProductRequest',
+		});
+		const { data } = await axios.put(`${server}/product/${productId}`, form);
+		dispatch({
+			type: 'updateProductSuccess',
+			payload: data.message,
+		});
+	} catch (error) {
+		dispatch({
+			type: 'updateProductFail',
 			payload: error.response.data.message,
 		});
 	}
