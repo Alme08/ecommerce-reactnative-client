@@ -76,7 +76,11 @@ const FormProducts = () => {
 								</Text>
 								<Text style={{ width: '20%' }}>{item.stock}</Text>
 								<View style={styles.actions}>
-									<TouchableOpacity>
+									<TouchableOpacity
+										onPress={() => {
+											navigation.navigate('editProduct', { product: item });
+										}}
+									>
 										<Feather name='edit' style={styles.editButton} />
 									</TouchableOpacity>
 									<TouchableOpacity>
