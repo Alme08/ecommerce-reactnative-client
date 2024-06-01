@@ -11,11 +11,15 @@ import { Feather } from '@expo/vector-icons';
 import { AntDesign } from '@expo/vector-icons';
 import { FontAwesome6 } from '@expo/vector-icons';
 import { FontAwesome } from '@expo/vector-icons';
+import { useDispatch } from 'react-redux';
+import { changeProductStatus } from '../../redux/features/product/productActions';
 
 const FormProducts = () => {
 	const navigation = useNavigation();
-	const [productKeyword, setProductKeyword] = useState('');
+	const dispatch = useDispatch();
 	const { params } = useRoute();
+	const [productKeyword, setProductKeyword] = useState('');
+	const [products, setProducts] = useState(params.data);
 	return (
 		<View>
 			<Text style={styles.title}>Productos</Text>
@@ -65,7 +69,7 @@ const FormProducts = () => {
 					<Text style={{ width: '20%', fontWeight: 'bold' }}>Stock</Text>
 					<Text style={{ width: '20%' }}></Text>
 				</View>
-				{params.data.map(item => {
+				{products.map(item => {
 					let expReg = new RegExp(productKeyword, 'i');
 					if (expReg.test(item.name)) {
 						return (
@@ -83,7 +87,19 @@ const FormProducts = () => {
 									>
 										<Feather name='edit' style={styles.editButton} />
 									</TouchableOpacity>
-									<TouchableOpacity>
+									<TouchableOpacity
+										onPress={() => {
+											dispatch(changeProductStatus(item._id));
+											setProducts(
+												products.map(product => {
+													if (product._id === item._id) {
+														return { ...product, active: !item.active };
+													}
+													return product;
+												})
+											);
+										}}
+									>
 										{item.active ? (
 											<AntDesign
 												name='minuscircleo'
