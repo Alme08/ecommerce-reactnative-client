@@ -68,6 +68,18 @@ export const productReducer = createReducer({}, builder => {
 	builder.addCase('deleteImageFail', (state, action) => {
 		state.error = action.payload;
 	});
+
+	//change product status
+	builder.addCase('changeProductStatusRequest', (state, action) => {
+		state.loading = true;
+	});
+	builder.addCase('changeProductStatusSuccess', (state, action) => {
+		state.loading = false;
+		state.message = action.payload;
+	});
+	builder.addCase('changeProductStatusFail', (state, action) => {
+		state.error = action.payload;
+	});
 });
 
 export const productDetailReducer = createReducer({}, builder => {
