@@ -120,6 +120,26 @@ export const deleteProductImage = (productId, imageId) => async dispatch => {
 	}
 };
 
+export const changeProductStatus = productId => async dispatch => {
+	try {
+		dispatch({
+			type: 'changeProductStatusRequest',
+		});
+		const { data } = await axios.put(
+			`${server}/product/${productId}/change-status`
+		);
+		dispatch({
+			type: 'changeProductStatusSuccess',
+			payload: data.message,
+		});
+	} catch (error) {
+		dispatch({
+			type: 'changeProductStatusFail',
+			payload: error.response.data.message,
+		});
+	}
+};
+
 // GET PRODUCT DATA
 export const getProductData = id => async dispatch => {
 	console.log(id);
