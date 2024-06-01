@@ -19,6 +19,9 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import FormProducts from './screens/Admin/FormProducts';
 import CreateProduct from './screens/Admin/createProduct';
 import EditProduct from './screens/Admin/editProduct';
+import FormCategories from './screens/Admin/FormCategories';
+import CreateCategory from './screens/Admin/createCategory';
+import EditCategory from './screens/Admin/editCategory';
 
 //Routes
 const Stack = createNativeStackNavigator();
@@ -64,6 +67,9 @@ export default function Main() {
 				<Stack.Screen name='productForm' component={FormProducts} />
 				<Stack.Screen name='createProduct' component={CreateProduct} />
 				<Stack.Screen name='editProduct' component={EditProduct} />
+				<Stack.Screen name='categoryForm' component={FormCategories} />
+				<Stack.Screen name='createCategory' component={CreateCategory} />
+				<Stack.Screen name='editCategory' component={EditCategory} />
 				<Stack.Screen
 					name='login'
 					component={Login}
