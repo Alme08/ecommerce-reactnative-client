@@ -20,3 +20,59 @@ export const getAllCategoryData = () => async dispatch => {
 		});
 	}
 };
+
+// CREATE CATEGORY ACTION
+export const createCategory = formData => async dispatch => {
+	try {
+		dispatch({
+			type: 'createCategoryRequest',
+		});
+		const { data } = await axios.post(`${server}/cat/create`, formData);
+		dispatch({
+			type: 'createCategorySuccess',
+			payload: data.category,
+		});
+	} catch (error) {
+		dispatch({
+			type: 'createCategoryFail',
+			payload: error.response.data.message,
+		});
+	}
+};
+
+//UPDATE CATEGORY ACTION
+export const updateCategory = (id, formData) => async dispatch => {
+	try {
+		dispatch({
+			type: 'updateCategoryRequest',
+		});
+		const { data } = await axios.put(`${server}/cat/update/${id}`, formData);
+		dispatch({
+			type: 'updateCategorySuccess',
+			payload: data.category,
+		});
+	} catch (error) {
+		dispatch({
+			type: 'updateCategoryFail',
+			payload: error.response.data.message,
+		});
+	}
+};
+
+// DELETE CATEGORY ACTION
+export const deleteCategory = id => async dispatch => {
+	try {
+		dispatch({
+			type: 'deleteCategoryRequest',
+		});
+		await axios.delete(`${server}/cat/delete/${id}`);
+		dispatch({
+			type: 'deleteCategorySuccess',
+		});
+	} catch (error) {
+		dispatch({
+			type: 'deleteCategoryFail',
+			payload: error.response.data.message,
+		});
+	}
+};
