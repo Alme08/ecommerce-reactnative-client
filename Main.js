@@ -26,6 +26,7 @@ import FormUsers from './screens/Admin/FormUsers';
 import EditUser from './screens/Admin/editUser';
 import FormOrders from './screens/Admin/FormOrders';
 import EditOrder from './screens/Admin/editOrder';
+import ResetPassword from './screens/auth/ResetPassword';
 
 //Routes
 const Stack = createNativeStackNavigator();
@@ -88,6 +89,13 @@ export default function Main() {
 				<Stack.Screen
 					name='register'
 					component={Register}
+					options={{
+						headerShown: false,
+					}}
+				/>
+				<Stack.Screen
+					name='resetPassword'
+					component={ResetPassword}
 					options={{
 						headerShown: false,
 					}}
