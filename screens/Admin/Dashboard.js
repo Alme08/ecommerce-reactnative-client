@@ -61,7 +61,7 @@ const Dashboard = () => {
 					<TouchableOpacity
 						style={styles.btn}
 						onPress={() => {
-							navigation.navigate('adminForm', {
+							navigation.navigate('userForm', {
 								data: users,
 							});
 						}}
