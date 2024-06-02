@@ -9,6 +9,7 @@ import {
 import React, { useState, useEffect } from 'react';
 import InputBox from '../../components/Form/InputBox';
 import background from '../../assets/background.jpg';
+import { useRoute } from '@react-navigation/native';
 
 //redux hooks
 import { useDispatch, useSelector } from 'react-redux';
@@ -19,6 +20,8 @@ const Login = ({ navigation }) => {
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
 	const [error, setError] = useState(null);
+	const route = useRoute();
+	const { errorRoute } = route.params || {};
 	//hooks
 	const dispatch = useDispatch();
 	//global state
@@ -33,7 +36,7 @@ const Login = ({ navigation }) => {
 		setError(err);
 	};
 
-	if (loading && error === null) {
+	if (loading && error === null && errorRoute === null) {
 		return (
 			<View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
 				<Text>Cargando...</Text>
