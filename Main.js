@@ -22,6 +22,8 @@ import EditProduct from './screens/Admin/editProduct';
 import FormCategories from './screens/Admin/FormCategories';
 import CreateCategory from './screens/Admin/createCategory';
 import EditCategory from './screens/Admin/editCategory';
+import FormUsers from './screens/Admin/FormUsers';
+import EditUser from './screens/Admin/editUser';
 
 //Routes
 const Stack = createNativeStackNavigator();
@@ -70,6 +72,8 @@ export default function Main() {
 				<Stack.Screen name='categoryForm' component={FormCategories} />
 				<Stack.Screen name='createCategory' component={CreateCategory} />
 				<Stack.Screen name='editCategory' component={EditCategory} />
+				<Stack.Screen name='userForm' component={FormUsers} />
+				<Stack.Screen name='editUser' component={EditUser} />
 				<Stack.Screen
 					name='login'
 					component={Login}
