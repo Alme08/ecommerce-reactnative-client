@@ -8,6 +8,7 @@ const InputBox = ({
 	placeholder,
 	secureTextEntry,
 	keyboardType,
+	editable,
 }) => {
 	return (
 		<View style={styles.container}>
@@ -18,6 +19,7 @@ const InputBox = ({
 				autoCorrect={false}
 				secureTextEntry={secureTextEntry}
 				keyboardType={keyboardType}
+				editable={editable}
 				value={value}
 				onChangeText={text => setValue(text)}
 			/>
