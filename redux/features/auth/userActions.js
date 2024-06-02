@@ -22,11 +22,14 @@ export const login = (email, password) => async dispatch => {
 			payload: data,
 		});
 		await AsyncStorage.setItem('@auth', data?.token);
+		return null;
 	} catch (error) {
 		dispatch({
 			type: 'loginFail',
 			payload: error.response.data.message,
 		});
+
+		return error;
 	}
 };
 
@@ -166,6 +169,47 @@ export const getAllUsersData = keyword => async dispatch => {
 	} catch (error) {
 		dispatch({
 			type: 'getAllUsersDataFail',
+			payload: error.response.data.message,
+		});
+	}
+};
+
+// UPDATE USER
+export const updateUser = (id, formData) => async dispatch => {
+	try {
+		dispatch({
+			type: 'updateUserRequest',
+		});
+		const { data } = await axios.put(
+			`${server}/user/user-update/${id}`,
+			formData
+		);
+		dispatch({
+			type: 'updateUserSuccess',
+			payload: data.message,
+		});
+	} catch (error) {
+		dispatch({
+			type: 'updateUserFail',
+			payload: error.response.data.message,
+		});
+	}
+};
+
+// CHANGE USER STATUS
+export const changeUserStatus = id => async dispatch => {
+	try {
+		dispatch({
+			type: 'changeUserStatusRequest',
+		});
+		const { data } = await axios.put(`${server}/user/${id}/change-status`);
+		dispatch({
+			type: 'changeUserStatusSuccess',
+			payload: data.message,
+		});
+	} catch (error) {
+		dispatch({
+			type: 'changeUserStatusFail',
 			payload: error.response.data.message,
 		});
 	}

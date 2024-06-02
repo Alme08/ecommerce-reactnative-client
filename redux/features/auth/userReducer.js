@@ -101,4 +101,28 @@ export const userReducer = createReducer({ token: null }, builder => {
 	builder.addCase('getAllUsersDataFail', (state, action) => {
 		state.error = action.payload;
 	});
+
+	// update user
+	builder.addCase('updateUserRequest', (state, action) => {
+		state.loading = true;
+	});
+	builder.addCase('updateUserSuccess', (state, action) => {
+		state.loading = false;
+		state.message = action.payload;
+	});
+	builder.addCase('updateUserFail', (state, action) => {
+		state.error = action.payload;
+	});
+
+	//CHANGE USER STATUS
+	builder.addCase('changeUserStatusRequest', (state, action) => {
+		state.loading = true;
+	});
+	builder.addCase('changeUserStatusSuccess', (state, action) => {
+		state.loading = false;
+		state.message = action.payload;
+	});
+	builder.addCase('changeUserStatusFail', (state, action) => {
+		state.error = action.payload;
+	});
 });
