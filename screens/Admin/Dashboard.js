@@ -5,7 +5,7 @@ import { AntDesign } from '@expo/vector-icons';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllProductData } from '../../redux/features/product/productActions';
 import { getAllCategoryData } from '../../redux/features/category/categoryActions';
-import { getAllOrdersData } from '../../redux/features/orders/orderActions';
+import { getAllOrders } from '../../redux/features/orders/orderActions';
 import { getAllUsersData } from '../../redux/features/auth/userActions';
 import { useNavigation, useFocusEffect } from '@react-navigation/native';
 
@@ -27,7 +27,7 @@ const Dashboard = () => {
 			// get all categories
 			dispatch(getAllCategoryData());
 			// get all orders
-			dispatch(getAllOrdersData());
+			dispatch(getAllOrders());
 		}, [dispatch])
 	);
 
@@ -72,7 +72,7 @@ const Dashboard = () => {
 					<TouchableOpacity
 						style={styles.btn}
 						onPress={() => {
-							navigation.navigate('adminForm', {
+							navigation.navigate('orderForm', {
 								data: orders,
 							});
 						}}
