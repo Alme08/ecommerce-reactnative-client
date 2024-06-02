@@ -18,6 +18,7 @@ import { useReduxStateHook } from '../../hooks/customHook';
 const Login = ({ navigation }) => {
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
+	const [error, setError] = useState(null);
 	//hooks
 	const dispatch = useDispatch();
 	//global state
@@ -28,10 +29,11 @@ const Login = ({ navigation }) => {
 		if (!email || !password) {
 			return alert('Please fill all the fields');
 		}
-		dispatch(login(email, password));
+		const err = dispatch(login(email, password));
+		setError(err);
 	};
 
-	if (loading) {
+	if (loading && error === null) {
 		return (
 			<View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
 				<Text>Cargando...</Text>
