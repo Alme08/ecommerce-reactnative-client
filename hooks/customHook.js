@@ -10,7 +10,7 @@ export const useReduxStateHook = (navigation, path = 'login') => {
 		if (error) {
 			alert(error);
 			dispatch({ type: 'clearError' });
-			navigation.navigate('login');
+			navigation.navigate('login', { error: error });
 		}
 		if (message) {
 			alert(message);
