@@ -65,6 +65,18 @@ export const userReducer = createReducer({ token: null }, builder => {
 		state.error = action.payload;
 	});
 
+	// forgot password
+	builder.addCase('forgotPasswordRequest', (state, action) => {
+		state.loading = true;
+	});
+	builder.addCase('forgotPasswordSuccess', (state, action) => {
+		state.loading = false;
+		state.message = action.payload;
+	});
+	builder.addCase('forgotPasswordFail', (state, action) => {
+		state.error = action.payload;
+	});
+
 	// Update profile
 	builder.addCase('updateProfileRequest', (state, action) => {
 		state.loading = true;

@@ -96,6 +96,33 @@ export const logout = () => async dispatch => {
 	}
 };
 
+// FORGOT PASSWORD ACTION
+export const forgotPassword = formData => async dispatch => {
+	try {
+		dispatch({
+			type: 'forgotPasswordRequest',
+		});
+		const { data } = await axios.post(
+			`${server}/user/reset-password`,
+			formData,
+			{
+				headers: {
+					'Content-Type': 'application/json',
+				},
+			}
+		);
+		dispatch({
+			type: 'forgotPasswordSuccess',
+			payload: data.message,
+		});
+	} catch (error) {
+		dispatch({
+			type: 'forgotPasswordFail',
+			payload: error.response.data.message,
+		});
+	}
+};
+
 // UPDATE PROFILE ACTION
 export const updateProfile = formData => async dispatch => {
 	try {
