@@ -60,6 +60,12 @@ const Login = ({ navigation }) => {
 						setValue={setPassword}
 						secureTextEntry={true}
 					/>
+					<Text
+						onPress={() => navigation.navigate('resetPassword')}
+						style={{ color: 'blue', textAlign: 'center' }}
+					>
+						¿Olvidaste tu contraseña?
+					</Text>
 					<View style={styles.btnContainer}>
 						<TouchableOpacity style={styles.loginBtn} onPress={handleLogin}>
 							<Text style={styles.loginBtnText}>Ingresar</Text>
@@ -94,6 +100,7 @@ const styles = StyleSheet.create({
 		width: '95%',
 		margin: 'auto',
 		paddingVertical: 30,
+		paddingHorizontal: 10,
 		backgroundColor: 'rgba(255, 255, 255, 0.8)',
 		borderRadius: 20,
 	},
