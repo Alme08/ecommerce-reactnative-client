@@ -29,7 +29,6 @@ export const userReducer = createReducer({ token: null }, builder => {
 	});
 	builder.addCase('registerSuccess', (state, action) => {
 		state.loading = false;
-		state.isAuth = true;
 		state.message = action.payload;
 	});
 	builder.addCase('registerFail', (state, action) => {
