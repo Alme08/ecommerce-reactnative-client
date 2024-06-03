@@ -191,6 +191,7 @@ const styles = StyleSheet.create({
 		width: '95%',
 		margin: 'auto',
 		paddingVertical: 30,
+		paddingHorizontal: 10,
 		backgroundColor: 'rgba(255, 255, 255, 0.8)',
 		borderRadius: 20,
 	},

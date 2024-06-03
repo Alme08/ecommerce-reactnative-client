@@ -9,6 +9,7 @@ import React, { useEffect, useState } from "react";
 import { getProductData } from '../redux/features/product/productActions';
 import Layout from "../components/Layout/Layout";
 import { useDispatch, useSelector } from 'react-redux';
+import { addItem } from '../redux/features/cart/cartReducer';
 
 const ProductDetails = ({ route }) => {
   const dispatch = useDispatch();
@@ -62,6 +63,14 @@ const ProductDetails = ({ route }) => {
     );
   }
 
+  	// Add to cart button
+	const handleAddToCart = () => {
+		for (let i = 0; i < qty; i++) {
+			dispatch(addItem(product));
+		}
+		alert('Added to cart');
+	};
+
   return (
     <Layout>
       <Image source={{ uri: productDetails.images[0].url }} style={styles.image} />
@@ -72,11 +81,11 @@ const ProductDetails = ({ route }) => {
         <View style={styles.btnContainer}>
           <TouchableOpacity
             style={styles.btnCart}
-            onPress={() => alert(`${qty} items added to cart`)}
+            onPress={handleAddToCart}
             disabled={productDetails.stock < qty}
           >
             <Text style={styles.btnCartText}>
-              {productDetails.stock < qty ? "Agotado" : "Añadir al carrito"}
+              {productDetails.stock < qty ? "Agotado" : `Añadir ${qty} al carrito`}
             </Text>
           </TouchableOpacity>
           <View style={styles.btnContainer}>
