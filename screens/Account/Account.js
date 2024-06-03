@@ -27,21 +27,21 @@ const Account = ({ navigation }) => {
 					<Text style={styles.heading}>Configuración</Text>
 					<TouchableOpacity
 						style={styles.btn}
-						onPress={() => navigation.navigate('profile', { user: user })}
+						onPress={() => navigation.navigate('Perfil', { user: user })}
 					>
 						<AntDesign name='edit' style={styles.btnText} />
 						<Text style={styles.btnText}>Editar Perfil</Text>
 					</TouchableOpacity>
 					<TouchableOpacity
 						style={styles.btn}
-						onPress={() => navigation.navigate('myorders', { id: user._id })}
+						onPress={() => navigation.navigate('Mis Ordenes', { id: user._id })}
 					>
 						<AntDesign name='bars' style={styles.btnText} />
 						<Text style={styles.btnText}>Mis Ordenes</Text>
 					</TouchableOpacity>
 					<TouchableOpacity
 						style={styles.btn}
-						onPress={() => navigation.navigate('notifications')}
+						onPress={() => navigation.navigate('Notificaciones')}
 					>
 						<AntDesign name='bells' style={styles.btnText} />
 						<Text style={styles.btnText}>Notificaciones</Text>

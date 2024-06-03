@@ -29,16 +29,16 @@ const Footer = () => {
 			</TouchableOpacity>
 			<TouchableOpacity
 				style={styles.menuContainer}
-				onPress={() => navigation.navigate('notifications')}
+				onPress={() => navigation.navigate('Notificaciones')}
 			>
 				<Feather
-					style={[styles.icon, route.name === 'notifications' && styles.active]}
+					style={[styles.icon, route.name === 'Notificaciones' && styles.active]}
 					name='bell'
 				/>
 				<Text
 					style={[
 						styles.iconText,
-						route.name === 'notifications' && styles.active,
+						route.name === 'Notificaciones' && styles.active,
 					]}
 				>
 					Notificaciones
@@ -46,27 +46,27 @@ const Footer = () => {
 			</TouchableOpacity>
 			<TouchableOpacity
 				style={styles.menuContainer}
-				onPress={() => navigation.navigate('account')}
+				onPress={() => navigation.navigate('Cuenta')}
 			>
 				<Feather
-					style={[styles.icon, route.name === 'account' && styles.active]}
+					style={[styles.icon, route.name === 'Cuenta' && styles.active]}
 					name='user'
 				/>
 				<Text
-					style={[styles.iconText, route.name === 'account' && styles.active]}
+					style={[styles.iconText, route.name === 'Cuenta' && styles.active]}
 				>
 					Cuenta
 				</Text>
 			</TouchableOpacity>
 			<TouchableOpacity
 				style={styles.menuContainer}
-				onPress={() => navigation.navigate('cart')}
+				onPress={() => navigation.navigate('Carrito')}
 			>
 				<Feather
-					style={[styles.icon, route.name === 'cart' && styles.active]}
+					style={[styles.icon, route.name === 'Carrito' && styles.active]}
 					name='shopping-cart'
 				/>
-				<Text style={[styles.iconText, route.name === 'cart' && styles.active]}>
+				<Text style={[styles.iconText, route.name === 'Carrito' && styles.active]}>
 					Carrito
 				</Text>
 			</TouchableOpacity>

@@ -62,13 +62,13 @@ export default function Main() {
 
 				<Stack.Screen name='productDetails' component={ProductDetails} />
 				<Stack.Screen name='checkout' component={Checkout} />
-				<Stack.Screen name='myorders' component={MyOrders} />
-				<Stack.Screen name='profile' component={Profile} />
-				<Stack.Screen name='notifications' component={Notifications} />
+				<Stack.Screen name='Mis Ordenes' component={MyOrders} />
+				<Stack.Screen name='Perfil' component={Profile} />
+				<Stack.Screen name='Notificaciones' component={Notifications} />
 				<Stack.Screen name='adminPanel' component={Dashboard} />
 				<Stack.Screen name='payment' component={Payment} />
-				<Stack.Screen name='account' component={Account} />
-				<Stack.Screen name='cart' component={Cart} />
+				<Stack.Screen name='Cuenta' component={Account} />
+				<Stack.Screen name='Carrito' component={Cart} />
 				<Stack.Screen name='productForm' component={FormProducts} />
 				<Stack.Screen name='createProduct' component={CreateProduct} />
 				<Stack.Screen name='editProduct' component={EditProduct} />

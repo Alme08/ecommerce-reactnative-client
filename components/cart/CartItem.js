@@ -1,7 +1,10 @@
-import React from 'react';
-import { Text, View, Image, TouchableOpacity, StyleSheet } from 'react-native';
-import { useDispatch } from 'react-redux';
-import { incrementQuantity, decrementQuantity } from '../../redux/features/cart/cartReducer';
+import React from "react";
+import { Text, View, Image, TouchableOpacity, StyleSheet } from "react-native";
+import { useDispatch } from "react-redux";
+import {
+  incrementQuantity,
+  decrementQuantity,
+} from "../../redux/features/cart/cartReducer";
 
 const CartItem = ({ item }) => {
   const dispatch = useDispatch();
@@ -16,7 +19,7 @@ const CartItem = ({ item }) => {
 
   const truncate = (text, length) => {
     if (text.length > length) {
-      return text.substring(0, length) + '...';
+      return text.substring(0, length) + "...";
     }
     return text;
   };
@@ -44,39 +47,39 @@ const CartItem = ({ item }) => {
 const styles = StyleSheet.create({
   container: {
     margin: 10,
-    backgroundColor: '#fff',
+    backgroundColor: "#fff",
     borderRadius: 10,
-    flexDirection: 'row',
-    justifyContent: 'space-evenly',
-    alignItems: 'center',
+    flexDirection: "row",
+    justifyContent: "space-evenly",
+    alignItems: "center",
   },
   image: {
     height: 50,
     width: 50,
-    resizeMode: 'contain',
+    resizeMode: "contain",
   },
   containerName: {
-    width: 100
+    width: 100,
   },
   name: {
     fontSize: 12,
   },
   btnContainer: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
     marginVertical: 20,
     marginHorizontal: 10,
   },
   btnQty: {
-    backgroundColor: 'lightgray',
+    backgroundColor: "lightgray",
     width: 40,
-    alignItems: 'center',
+    alignItems: "center",
     marginHorizontal: 10,
   },
   btnQtyText: {
     fontSize: 20,
-    fontWeight: 'bold',
+    fontWeight: "bold",
   },
 });
 

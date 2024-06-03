@@ -68,7 +68,7 @@ const ProductDetails = ({ route }) => {
 		for (let i = 0; i < qty; i++) {
 			dispatch(addItem(product));
 		}
-		alert('Added to cart');
+		alert('producto añadido al carrito');
 	};
 
   return (

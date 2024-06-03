@@ -5,13 +5,7 @@ import Layout from '../../components/Layout/Layout';
 const Notifications = () => {
 	return (
 		<Layout>
-			<View
-				style={{
-					justifyContent: 'center',
-					alignItems: 'center',
-					height: '100%',
-				}}
-			>
+			<View style={styles.container}>
 				<Text>Oops! No tienes ninguna notificación.</Text>
 			</View>
 		</Layout>
@@ -20,4 +14,10 @@ const Notifications = () => {
 
 export default Notifications;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+	container: {
+		justifyContent: 'center',
+		alignItems: 'center',
+		height: '100%',
+	}
+});

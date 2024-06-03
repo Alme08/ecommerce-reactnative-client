@@ -16,7 +16,7 @@ const ProductCard = ({ product }) => {
 	// Add to cart button
 	const handleAddToCart = () => {
 		dispatch(addItem(product));
-		alert('Added to cart');
+		alert('producto añadido al carrito');
 	};
 
 	return (
