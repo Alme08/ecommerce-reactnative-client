@@ -1,21 +1,67 @@
-import React from "react";
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import React, { useState } from "react";
+import {
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+  TextInput,
+  ScrollView,
+  Alert,
+} from "react-native";
 import { useSelector } from "react-redux";
 import Layout from "../components/Layout/Layout";
 
 const Checkout = ({ navigation }) => {
   const cart = useSelector((state) => state.cart);
-  const totalAmount = cart.items.reduce(
-    (total, item) => total + item.price * item.quantity,
-    0
-  );
+  const [address, setAddress] = useState("");
+  const [city, setCity] = useState("");
+  const [country, setCountry] = useState("");
+  const [paymentMethod, setPaymentMethod] = useState("");
+
+  const totalAmount = cart.items.reduce((total, item) => total + item.price * item.quantity, 0);
+
+  const itemPrice = totalAmount;
+  const tax = 0.16;
+  const shippingCharges = 0.07;
+  const totalOrderAmount = itemPrice + (itemPrice * tax) + (itemPrice * shippingCharges);
+
+  const handleOrder = () => {
+    const orderItems = cart.items.map((item) => ({
+      name: item.name,
+      price: item.price,
+      quantity: item.quantity,
+      product: item._id,
+    }));
+
+    const orderData = {
+      shippingInfo: {
+        address,
+        city,
+        country,
+      },
+      orderItems,
+      paymentInfo: {
+        id: null,
+        status: null
+      },
+      paymentMethod,
+      itemPrice,
+      tax,
+      shippingCharges,
+      totalAmount: totalOrderAmount,
+    };
+
+    alert("Order data prepared for submission");
+  };
 
   const handleCOD = () => {
-    alert("Pedido realizado con éxito");
+    setPaymentMethod("COD");
+    handleOrder();
   };
 
   const handleOnline = () => {
-    alert("Estás siendo redirigido a la pasarela de pago");
+    setPaymentMethod("ONLINE");
+    handleOrder();
     navigation.navigate("payment");
   };
 
@@ -28,7 +74,7 @@ const Checkout = ({ navigation }) => {
 
   return (
     <Layout>
-      <View style={styles.container}>
+      <ScrollView contentContainerStyle={styles.container}>
         <Text style={styles.heading}>Opciones de pago</Text>
         {cart.items.map((item) => (
           <View key={item._id} style={styles.cartItem}>
@@ -43,20 +89,38 @@ const Checkout = ({ navigation }) => {
         <Text style={styles.price}>
           Cantidad Total : {totalAmount.toFixed(2)}$
         </Text>
-      </View>
-      <View style={styles.paymentCard}>
-        <Text style={styles.paymentHeading}>
-          Selecciona tus métodos de pago
-        </Text>
-        <TouchableOpacity style={styles.paymentBtn} onPress={handleCOD}>
-          <Text style={styles.paymentBtnText}>Efectivo</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.paymentBtn} onPress={handleOnline}>
-          <Text style={styles.paymentBtnText}>
-            Online (TARJETA CREDITO | DEBITO)
+        <View style={styles.paymentCard}>
+          <TextInput
+            style={styles.input}
+            placeholder="Dirección"
+            value={address}
+            onChangeText={setAddress}
+          />
+          <TextInput
+            style={styles.input}
+            placeholder="Ciudad"
+            value={city}
+            onChangeText={setCity}
+          />
+          <TextInput
+            style={styles.input}
+            placeholder="País"
+            value={country}
+            onChangeText={setCountry}
+          />
+          <Text style={styles.paymentHeading}>
+            Selecciona tus métodos de pago
           </Text>
-        </TouchableOpacity>
-      </View>
+          <TouchableOpacity style={styles.paymentBtn} onPress={handleCOD}>
+            <Text style={styles.paymentBtnText}>Efectivo</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.paymentBtn} onPress={handleOnline}>
+            <Text style={styles.paymentBtnText}>
+              Online (TARJETA CREDITO | DEBITO)
+            </Text>
+          </TouchableOpacity>
+        </View>
+      </ScrollView>
     </Layout>
   );
 };
@@ -72,6 +136,14 @@ const styles = StyleSheet.create({
     fontWeight: "500",
     marginVertical: 10,
     textAlign: "center",
+  },
+  input: {
+    width: "100%",
+    padding: 10,
+    borderWidth: 1,
+    borderColor: "#ccc",
+    borderRadius: 5,
+    marginBottom: 10,
   },
   price: {
     fontSize: 20,
