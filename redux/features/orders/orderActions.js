@@ -58,3 +58,43 @@ export const changeOrderStatus = id => async dispatch => {
 		});
 	}
 };
+
+// PAYMENT CONTROLLER
+export const payment = totalAmount => async dispatch => {
+	try {
+		dispatch({
+			type: 'paymentRequest',
+		});
+		const { data } = await axios.post(`${server}/order/payments`, {
+			totalAmount,
+		});
+		dispatch({
+			type: 'paymentSuccess',
+			payload: data?.client_secret,
+		});
+	} catch (error) {
+		dispatch({
+			type: 'paymentFail',
+			payload: error.response.data.message,
+		});
+	}
+};
+
+// CREATE ORDER
+export const createOrder = order => async dispatch => {
+	try {
+		dispatch({
+			type: 'createOrderRequest',
+		});
+		const { data } = await axios.post(`${server}/order/create`, order);
+		dispatch({
+			type: 'createOrderSuccess',
+			payload: data?.order,
+		});
+	} catch (error) {
+		dispatch({
+			type: 'createOrderFail',
+			payload: error.response.data.message,
+		});
+	}
+};
