@@ -18,12 +18,16 @@ const Checkout = ({ navigation }) => {
   const [country, setCountry] = useState("");
   const [paymentMethod, setPaymentMethod] = useState("");
 
-  const totalAmount = cart.items.reduce((total, item) => total + item.price * item.quantity, 0);
+  const totalAmount = cart.items.reduce(
+    (total, item) => total + item.price * item.quantity,
+    0
+  );
 
   const itemPrice = totalAmount;
   const tax = 0.16;
   const shippingCharges = 0.07;
-  const totalOrderAmount = itemPrice + (itemPrice * tax) + (itemPrice * shippingCharges);
+  const totalOrderAmount =
+    itemPrice + itemPrice * tax + itemPrice * shippingCharges;
 
   const handleOrder = () => {
     const orderItems = cart.items.map((item) => ({
@@ -42,7 +46,7 @@ const Checkout = ({ navigation }) => {
       orderItems,
       paymentInfo: {
         id: null,
-        status: null
+        status: null,
       },
       paymentMethod,
       itemPrice,
@@ -87,15 +91,20 @@ const Checkout = ({ navigation }) => {
           </View>
         ))}
         <Text style={styles.price}>
-          Cantidad Total : {totalAmount.toFixed(2)}$
+          Cantidad del IVA del 16%: ${(itemPrice * tax).toFixed(2)}
+        </Text>
+        <Text style={styles.price}>
+          Costo de envio: ${(itemPrice * shippingCharges).toFixed(2)}
+        </Text>
+        <Text style={styles.price}>
+          Cantidad Total : ${totalOrderAmount.toFixed(2)}
         </Text>
         <View style={styles.paymentCard}>
           <TextInput
             style={styles.input}
             placeholder="Dirección"
             value={address}
-            onChangeText={setAddress}
-          />
+            onChangeText={setAddress} />
           <TextInput
             style={styles.input}
             placeholder="Ciudad"
@@ -149,7 +158,8 @@ const styles = StyleSheet.create({
     fontSize: 20,
     marginBottom: 10,
     color: "gray",
-    textAlign: "center",
+    flexDirection: "row",
+    justifyContent: "space-between",
   },
   cartItem: {
     flexDirection: "row",
@@ -165,6 +175,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     padding: 30,
     marginVertical: 10,
+    marginBottom: 100,
     alignSelf: "center",
   },
   paymentHeading: {
