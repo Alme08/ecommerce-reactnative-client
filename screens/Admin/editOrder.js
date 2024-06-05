@@ -12,7 +12,7 @@ const EditOrder = () => {
 	const { order } = route.params;
 	const handleSend = async () => {
 		await dispatch(changeOrderStatus(order._id));
-		navigation.navigate('adminPanel');
+		navigation.navigate('Panel de administración');
 	};
 
 	return (

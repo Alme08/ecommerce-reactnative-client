@@ -1,12 +1,11 @@
 import {
 	StyleSheet,
 	Text,
-	TextInput,
 	TouchableOpacity,
 	View,
 	ImageBackground,
 } from 'react-native';
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import InputBox from '../../components/Form/InputBox';
 import background from '../../assets/background.jpg';
 import { useRoute } from '@react-navigation/native';

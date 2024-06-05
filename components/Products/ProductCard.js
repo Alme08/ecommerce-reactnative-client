@@ -10,7 +10,7 @@ const ProductCard = ({ product }) => {
 
 	// More details button
 	const handleMoreButton = id => {
-		navigation.navigate('productDetails', { _id: id });
+		navigation.navigate('Detalles de Producto', { _id: id });
 	};
 
 	// Add to cart button

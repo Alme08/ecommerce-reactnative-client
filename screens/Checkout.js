@@ -62,7 +62,7 @@ const Checkout = ({ navigation }) => {
     // const err2 = dispatch(createOrder(orderData));
 
     if (metodo === "ONLINE") {
-      navigation.navigate("payment");
+      navigation.navigate("Pagar");
     } else {
       const err2 = dispatch(createOrder(orderData));
       TicketsPDF(orderData);

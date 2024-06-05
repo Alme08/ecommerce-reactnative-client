@@ -23,10 +23,10 @@ const FormCategories = () => {
 	const [categoryKeyword, setCategoryKeyword] = useState('');
 	return (
 		<View>
-			<Text style={styles.title}>Categorias</Text>
+			<Text style={styles.title}>Categorías</Text>
 			<View style={styles.container}>
 				<TextInput
-					placeholder='Buscar cualquier categoria...'
+					placeholder='Buscar cualquier Categoría...'
 					placeholderTextColor='#ababab'
 					style={styles.inputBox}
 					value={categoryKeyword}
@@ -55,7 +55,7 @@ const FormCategories = () => {
 						gap: 5,
 					}}
 					onPress={() => {
-						navigation.navigate('createCategory');
+						navigation.navigate('Crear Categoría');
 					}}
 				>
 					<Text style={{ color: '#fff' }}>Añadir</Text>
@@ -84,7 +84,7 @@ const FormCategories = () => {
 								<View style={styles.actions}>
 									<TouchableOpacity
 										onPress={() => {
-											navigation.navigate('editCategory', { category: item });
+											navigation.navigate('Editar Categoría', { category: item });
 										}}
 									>
 										<Feather name='edit' style={styles.editButton} />
@@ -104,7 +104,7 @@ const FormCategories = () => {
 														text: 'OK',
 														onPress: () => {
 															dispatch(deleteCategory(item._id));
-															navigation.navigate('adminPanel');
+															navigation.navigate('Panel de administración');
 														},
 													},
 												],

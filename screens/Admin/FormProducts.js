@@ -54,7 +54,7 @@ const FormProducts = () => {
 						gap: 5,
 					}}
 					onPress={() => {
-						navigation.navigate('createProduct');
+						navigation.navigate('Crear Producto');
 					}}
 				>
 					<Text style={{ color: '#fff' }}>Añadir</Text>
@@ -82,7 +82,7 @@ const FormProducts = () => {
 								<View style={styles.actions}>
 									<TouchableOpacity
 										onPress={() => {
-											navigation.navigate('editProduct', { product: item });
+											navigation.navigate('Editar Producto', { product: item });
 										}}
 									>
 										<Feather name='edit' style={styles.editButton} />

@@ -47,7 +47,7 @@ const CreateProduct = () => {
 			createProduct(formData, images[0].assets[0])
 		);
 		if (loading) {
-			navigation.navigate('adminPanel');
+			navigation.navigate('Panel de administración');
 		}
 	};
 	return (

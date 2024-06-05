@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet } from 'react-native';
+import { StyleSheet } from 'react-native';
 import React, { useEffect, useState } from 'react';
 import Layout from '../components/Layout/Layout';
 import Categories from '../components/category/Categories';

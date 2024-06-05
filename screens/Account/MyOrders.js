@@ -8,10 +8,11 @@ import { getAllOrdersData } from '../../redux/features/orders/orderActions';
 const MyOrders = () => {
 	const dispatch = useDispatch();
 	const { orders } = useSelector(state => state.orders);
+
 	useEffect(() => {
 		dispatch(getAllOrdersData());
-		console.log(orders);
 	}, [dispatch]);
+
 	return (
 		<Layout>
 			<View style={styles.container}>
@@ -29,6 +30,7 @@ const MyOrders = () => {
 const styles = StyleSheet.create({
 	container: {
 		marginTop: 10,
+		marginBottom: 100,
 	},
 	heading: {
 		textAlign: 'center',

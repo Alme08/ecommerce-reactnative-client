@@ -34,12 +34,12 @@ const Dashboard = () => {
 	return (
 		<Layout>
 			<View style={styles.main}>
-				<Text style={styles.heading}>Dashboard</Text>
+				<Text style={styles.heading}>Panel</Text>
 				<View style={styles.btnContainer}>
 					<TouchableOpacity
 						style={styles.btn}
 						onPress={() => {
-							navigation.navigate('productForm', {
+							navigation.navigate('Formulario de Productos', {
 								data: products,
 							});
 						}}
@@ -50,18 +50,18 @@ const Dashboard = () => {
 					<TouchableOpacity
 						style={styles.btn}
 						onPress={() => {
-							navigation.navigate('categoryForm', {
+							navigation.navigate('Formulario de Categorías', {
 								data: categories,
 							});
 						}}
 					>
 						<AntDesign name='edit' style={styles.icon} />
-						<Text style={styles.btnText}>Categorias {categories?.length}</Text>
+						<Text style={styles.btnText}>Categorías {categories?.length}</Text>
 					</TouchableOpacity>
 					<TouchableOpacity
 						style={styles.btn}
 						onPress={() => {
-							navigation.navigate('userForm', {
+							navigation.navigate('Formulario de Usuarios', {
 								data: users,
 							});
 						}}
@@ -72,7 +72,7 @@ const Dashboard = () => {
 					<TouchableOpacity
 						style={styles.btn}
 						onPress={() => {
-							navigation.navigate('orderForm', {
+							navigation.navigate('Formulario de Ordenes', {
 								data: orders,
 							});
 						}}

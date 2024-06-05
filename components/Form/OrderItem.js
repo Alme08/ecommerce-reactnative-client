@@ -3,7 +3,6 @@ import { format } from 'date-fns';
 import React from 'react';
 
 const OrderItem = ({ order }) => {
-	console.log(order);
 	return (
 		<View style={styles.container}>
 			<View style={styles.orderinfo}>

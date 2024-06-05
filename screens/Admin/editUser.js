@@ -42,7 +42,7 @@ const EditUser = () => {
 		};
 
 		await dispatch(updateUser(user._id, formData));
-		navigation.navigate('adminPanel');
+		navigation.navigate('Panel de administración');
 	};
 
 	return (

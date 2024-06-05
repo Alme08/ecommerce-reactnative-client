@@ -22,7 +22,7 @@ const EditCategory = () => {
 		};
 
 		await dispatch(updateCategory(category._id, formData));
-		navigation.navigate('adminPanel');
+		navigation.navigate('Panel de administración');
 	};
 
 	return (

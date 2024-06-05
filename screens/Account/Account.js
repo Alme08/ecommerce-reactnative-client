@@ -50,7 +50,7 @@ const Account = ({ navigation }) => {
 						<TouchableOpacity
 							style={styles.btn}
 							onPress={() =>
-								navigation.navigate('adminPanel', { id: user._id })
+								navigation.navigate('Panel de administración', { id: user._id })
 							}
 						>
 							<AntDesign name='laptop' style={styles.btnText} />

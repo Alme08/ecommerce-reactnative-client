@@ -60,7 +60,7 @@ const FormOrders = () => {
 								<View style={styles.actions}>
 									<TouchableOpacity
 										onPress={() => {
-											navigation.navigate('editOrder', { order: order });
+											navigation.navigate('Editar Orden', { order: order });
 										}}
 									>
 										<Feather name='edit' style={styles.editButton} />

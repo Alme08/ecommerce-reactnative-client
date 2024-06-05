@@ -20,7 +20,7 @@ const CreateCategory = () => {
 		};
 		await dispatch(createCategory(formData));
 
-		navigation.navigate('adminPanel');
+		navigation.navigate('Panel de administración');
 	};
 	return (
 		<View>

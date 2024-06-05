@@ -60,25 +60,25 @@ export default function Main() {
 					options={{ headerShown: false }}
 				/>
 
-				<Stack.Screen name='productDetails' component={ProductDetails} />
-				<Stack.Screen name='checkout' component={Checkout} />
+				<Stack.Screen name='Detalles de Producto' component={ProductDetails} />
+				<Stack.Screen name='Verificar Pagos' component={Checkout} />
 				<Stack.Screen name='Mis Ordenes' component={MyOrders} />
 				<Stack.Screen name='Perfil' component={Profile} />
 				<Stack.Screen name='Notificaciones' component={Notifications} />
-				<Stack.Screen name='adminPanel' component={Dashboard} />
-				<Stack.Screen name='payment' component={Payment} />
+				<Stack.Screen name='Panel de administración' component={Dashboard} />
+				<Stack.Screen name='Pagar' component={Payment} />
 				<Stack.Screen name='Cuenta' component={Account} />
 				<Stack.Screen name='Carrito' component={Cart} />
-				<Stack.Screen name='productForm' component={FormProducts} />
-				<Stack.Screen name='createProduct' component={CreateProduct} />
-				<Stack.Screen name='editProduct' component={EditProduct} />
-				<Stack.Screen name='categoryForm' component={FormCategories} />
-				<Stack.Screen name='createCategory' component={CreateCategory} />
-				<Stack.Screen name='editCategory' component={EditCategory} />
-				<Stack.Screen name='userForm' component={FormUsers} />
-				<Stack.Screen name='editUser' component={EditUser} />
-				<Stack.Screen name='orderForm' component={FormOrders} />
-				<Stack.Screen name='editOrder' component={EditOrder} />
+				<Stack.Screen name='Formulario de Productos' component={FormProducts} />
+				<Stack.Screen name='Crear Producto' component={CreateProduct} />
+				<Stack.Screen name='Editar Producto' component={EditProduct} />
+				<Stack.Screen name='Formulario de Categorías' component={FormCategories} />
+				<Stack.Screen name='Crear Categoría' component={CreateCategory} />
+				<Stack.Screen name='Editar Categoría' component={EditCategory} />
+				<Stack.Screen name='Formulario de Usuarios' component={FormUsers} />
+				<Stack.Screen name='Editar Usuario' component={EditUser} />
+				<Stack.Screen name='Formulario de Ordenes' component={FormOrders} />
+				<Stack.Screen name='Editar Orden' component={EditOrder} />
 				<Stack.Screen
 					name='login'
 					component={Login}

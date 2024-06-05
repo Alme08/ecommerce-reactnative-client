@@ -71,7 +71,7 @@ const EditProduct = () => {
 			}
 		}
 
-		navigation.navigate('adminPanel');
+		navigation.navigate('Panel de administración');
 	};
 	return (
 		<View>

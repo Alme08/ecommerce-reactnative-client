@@ -5,12 +5,14 @@ import {
   StyleSheet,
   ScrollView,
   TouchableOpacity,
+  Image,
 } from "react-native";
 import { useSelector, useDispatch } from "react-redux";
 import PriceTable from "../components/cart/PriceTable";
 import Layout from "../components/Layout/Layout";
 import CartItem from "../components/cart/CartItem";
 import { clearCart, removeItem } from "../redux/features/cart/cartReducer";
+import carritoVacio from "../assets/empty_cart.webp";
 
 const Cart = ({ navigation }) => {
   const cartItems = useSelector((state) => state.cart.items);
@@ -35,15 +37,12 @@ const Cart = ({ navigation }) => {
 
   return (
     <Layout>
-      <Text style={styles.heading}>
-        {cartItems.length > 0
-          ? `Tienes ${cartItems.length} producto${
-              cartItems.length > 1 ? "s" : ""
-            } en tu carrito.`
-          : "Tu carrito está vacío."}
-      </Text>
-      {cartItems.length > 0 && (
+      {cartItems.length > 0 ? (
         <>
+          <Text style={styles.heading1}>
+            Tienes {cartItems.length} producto
+            {cartItems.length > 1 ? "s" : ""} en tu carrito.
+          </Text>
           <ScrollView>
             {cartItems.map((item) => (
               <CartItem item={item} key={item._id} />
@@ -61,31 +60,44 @@ const Cart = ({ navigation }) => {
             <View style={styles.grandTotal}>
               <PriceTable
                 title={"Total"}
-                price={roundToTwoDecimals(totalPrice + (totalPrice * 0.16))}
+                price={roundToTwoDecimals(totalPrice + totalPrice * 0.16)}
               />
             </View>
             <TouchableOpacity
               style={styles.btnCheckout}
-              onPress={() => navigation.navigate("checkout")}
+              onPress={() => navigation.navigate("Verificar Pagos")}
             >
               <Text style={styles.btnCheckoutText}>COMPROBAR</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={[styles.btnVaciarCheckout]} onPress={handleClearCart}>
+            <TouchableOpacity
+              style={[styles.btnVaciarCheckout]}
+              onPress={handleClearCart}
+            >
               <Text style={styles.btnCheckoutText}>VACIAR CARRITO</Text>
             </TouchableOpacity>
           </View>
         </>
+      ) : (
+        <View style={styles.imageContainer}>
+          <Text style={styles.heading2}>Tu carrito está vacío.</Text>
+          <Image source={carritoVacio} style={styles.image} />
+        </View>
       )}
     </Layout>
   );
 };
 
 const styles = StyleSheet.create({
-  heading: {
+  heading1: {
     textAlign: "center",
-    color: "green",
     fontSize: 20,
+    color: 'green',
     marginTop: 10,
+  },
+  heading2: {
+    textAlign: "center",
+    fontSize: 30,
+    marginTop: 20,
   },
   grandTotal: {
     borderWidth: 1,
@@ -114,12 +126,23 @@ const styles = StyleSheet.create({
     width: "90%",
     marginHorizontal: 20,
     borderRadius: 20,
-    marginBottom: 100
+    marginBottom: 100,
   },
   btnCheckoutText: {
     color: "#fff",
     fontSize: 18,
     fontWeight: "bold",
+  },
+  imageContainer: {
+    width: "100%",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  image: {
+    marginTop: 100,
+    height: 200,
+    width: 400,
   },
 });
 

@@ -59,7 +59,7 @@ const FormUsers = () => {
 								<View style={styles.actions}>
 									<TouchableOpacity
 										onPress={() => {
-											navigation.navigate('editUser', { user: item });
+											navigation.navigate('Editar Usuario', { user: item });
 										}}
 									>
 										<Feather name='edit' style={styles.editButton} />
