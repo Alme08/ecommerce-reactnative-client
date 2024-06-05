@@ -44,4 +44,28 @@ export const orderReducer = createReducer({}, builder => {
 	builder.addCase('getAllOrdersDataAdminFail', (state, action) => {
 		state.error = action.payload;
 	});
+
+	//payment
+	builder.addCase('paymentRequest', (state, action) => {
+		state.loading = true;
+	});
+	builder.addCase('paymentSuccess', (state, action) => {
+		state.payment = action.payload;
+		state.loading = false;
+	});
+	builder.addCase('paymentFail', (state, action) => {
+		state.error = action.payload;
+	});
+
+	// create order
+	builder.addCase('createOrderRequest', (state, action) => {
+		state.loading = true;
+	});
+	builder.addCase('createOrderSuccess', (state, action) => {
+		state.order = action.payload;
+		state.loading = false;
+	});
+	builder.addCase('createOrderFail', (state, action) => {
+		state.error = action.payload;
+	});
 });
