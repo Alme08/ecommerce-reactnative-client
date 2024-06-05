@@ -8,15 +8,19 @@ import {
   ScrollView,
   Alert,
 } from "react-native";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { payment, createOrder } from "../redux/features/orders/orderActions";
+import { clearCart } from "../redux/features/cart/cartReducer";
 import Layout from "../components/Layout/Layout";
+import TicketsPDF from "../components/Tickets/Ticket";
 
 const Checkout = ({ navigation }) => {
   const cart = useSelector((state) => state.cart);
   const [address, setAddress] = useState("");
   const [city, setCity] = useState("");
   const [country, setCountry] = useState("");
-  const [paymentMethod, setPaymentMethod] = useState("");
+
+  const dispatch = useDispatch();
 
   const totalAmount = cart.items.reduce(
     (total, item) => total + item.price * item.quantity,
@@ -29,7 +33,7 @@ const Checkout = ({ navigation }) => {
   const totalOrderAmount =
     itemPrice + itemPrice * tax + itemPrice * shippingCharges;
 
-  const handleOrder = () => {
+  const handleOrder = (metodo) => {
     const orderItems = cart.items.map((item) => ({
       name: item.name,
       price: item.price,
@@ -48,25 +52,31 @@ const Checkout = ({ navigation }) => {
         id: null,
         status: null,
       },
-      paymentMethod,
+      paymentMethod: metodo,
       itemPrice,
       tax,
       shippingCharges,
       totalAmount: totalOrderAmount,
     };
+    // const err1 = dispatch(payment(totalOrderAmount));
+    // const err2 = dispatch(createOrder(orderData));
 
-    alert("Order data prepared for submission");
+    if (metodo === "ONLINE") {
+      navigation.navigate("payment");
+    } else {
+      const err2 = dispatch(createOrder(orderData));
+      TicketsPDF(orderData);
+      dispatch(clearCart());
+      alert("Orden enviada con exito");
+    }
   };
 
   const handleCOD = () => {
-    setPaymentMethod("COD");
-    handleOrder();
+    handleOrder("COD");
   };
 
   const handleOnline = () => {
-    setPaymentMethod("ONLINE");
-    handleOrder();
-    navigation.navigate("payment");
+    handleOrder("ONLINE");
   };
 
   const truncate = (text, length) => {
@@ -104,7 +114,8 @@ const Checkout = ({ navigation }) => {
             style={styles.input}
             placeholder="Dirección"
             value={address}
-            onChangeText={setAddress} />
+            onChangeText={setAddress}
+          />
           <TextInput
             style={styles.input}
             placeholder="Ciudad"

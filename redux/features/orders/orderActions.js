@@ -66,7 +66,7 @@ export const payment = totalAmount => async dispatch => {
 			type: 'paymentRequest',
 		});
 		const { data } = await axios.post(`${server}/order/payments`, {
-			totalAmount,
+			totalAmount: totalAmount,
 		});
 		dispatch({
 			type: 'paymentSuccess',

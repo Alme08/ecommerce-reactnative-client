@@ -1,78 +1,133 @@
-import * as React from 'react';
-import { View, StyleSheet, Button, Platform, Text } from 'react-native';
-import * as Print from 'expo-print';
+import { printToFileAsync } from 'expo-print';
 import { shareAsync } from 'expo-sharing';
 
-const html = `
-<html>
-  <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
-  </head>
-  <body style="text-align: center;">
-    <h1 style="font-size: 50px; font-family: Helvetica Neue; font-weight: normal;">
-      Hello Expo!
-    </h1>
-    <img
-      src="https://d30j33t1r58ioz.cloudfront.net/static/guides/sdk.png"
-      style="width: 90vw;" />
-  </body>
-</html>
-`;
 
-export default function App() {
-  const [selectedPrinter, setSelectedPrinter] = React.useState();
+export default function TicketsPDF(data) {
+  
+  const { shippingInfo, orderItems, paymentMethod, itemPrice, tax, shippingCharges, totalAmount } = data;
 
-  const print = async () => {
-    // On iOS/android prints the given html. On web prints the HTML from the current page.
-    await Print.printAsync({
-      html,
-      printerUrl: selectedPrinter?.url, // iOS only
-    });
-  };
+  const orderItemsHtml = orderItems.map(item => `
+    <tr>
+      <td style="padding: 12px; border: 1px solid #e0e0e0;">${item.name}</td>
+      <td style="padding: 12px; border: 1px solid #e0e0e0; text-align: right;">${item.price.toFixed(2)}$</td>
+      <td style="padding: 12px; border: 1px solid #e0e0e0; text-align: right;">${item.quantity}</td>
+      <td style="padding: 12px; border: 1px solid #e0e0e0; text-align: right;">${(item.price * item.quantity).toFixed(2)}$</td>
+    </tr>
+  `).join('');
 
-  const printToFile = async () => {
-    // On iOS/android prints the given html. On web prints the HTML from the current page.
-    const { uri } = await Print.printToFileAsync({ html });
-    console.log('File has been saved to:', uri);
-    await shareAsync(uri, { UTI: '.pdf', mimeType: 'application/pdf' });
-  };
+  const html = `
+  <html>
+    <head>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+      <style>
+        body {
+          font-family: 'Helvetica Neue', Arial, sans-serif;
+          margin: 0;
+          padding: 0;
+          background-color: #f7f7f7;
+          color: #333;
+        }
+        .container {
+          width: 90%;
+          margin: 30px auto;
+          background-color: #fff;
+          padding: 20px;
+          border-radius: 10px;
+          box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+          font-size: 24px;
+          margin-bottom: 20px;
+          color: #4CAF50;
+        }
+        .details {
+          margin-bottom: 20px;
+          text-align: left;
+        }
+        .details h2 {
+          font-size: 20px;
+          margin-bottom: 10px;
+          color: #333;
+        }
+        .details p {
+          margin: 5px 0;
+        }
+        table {
+          width: 100%;
+          border-collapse: collapse;
+          margin-bottom: 20px;
+        }
+        table th, table td {
+          padding: 12px;
+          border: 1px solid #e0e0e0;
+        }
+        table th {
+          background-color: #f2f2f2;
+          color: #333;
+          text-align: left;
+        }
+        table td {
+          text-align: left;
+        }
+        .totals {
+          text-align: right;
+          font-size: 18px;
+          margin-top: 20px;
+        }
+        .totals p {
+          margin: 5px 0;
+        }
+        .totals .total-amount {
+          font-weight: bold;
+          color: #333;
+        }
+        .thead{
+          background: #1b1b1b;
+        }
+      </style>
+    </head>
+    <body>
+      <div class="container">
+        <h1>Factura</h1>
+        <div class="details">
+          <h2>Información de Envío</h2>
+          <p><strong>Dirección:</strong> ${shippingInfo.address}</p>
+          <p><strong>Ciudad:</strong> ${shippingInfo.city}</p>
+          <p><strong>País:</strong> ${shippingInfo.country}</p>
+          <p><strong>Método de Pago:</strong> ${paymentMethod === "COD" ? "Efectivo" : "Online (TARJETA CREDITO | DEBITO)"}</p>
+        </div>
+        <table>
+          <thead class="thead">
+            <tr>
+              <th>Producto</th>
+              <th>Precio</th>
+              <th>Cantidad</th>
+              <th>Total</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${orderItemsHtml}
+          </tbody>
+        </table>
+        <div class="totals">
+          <p>Subtotal: ${itemPrice.toFixed(2)}$</p>
+          <p>IVA (16%): ${(itemPrice * tax).toFixed(2)}$</p>
+          <p>Cargos de Envío (7%): ${(itemPrice * shippingCharges).toFixed(2)}$</p>
+          <p class="total-amount">Total: ${totalAmount.toFixed(2)}$</p>
+        </div>
+      </div>
+    </body>
+  </html>
+  `;
 
-  const selectPrinter = async () => {
-    const printer = await Print.selectPrinterAsync(); // iOS only
-    setSelectedPrinter(printer);
-  };
+  async function generatePDF(){
+    const file = await printToFileAsync({
+      html: html,
+      base64: false
+    })
 
-  return (
-    <View style={styles.container}>
-      <Button title="Print" onPress={print} />
-      <View style={styles.spacer} />
-      <Button title="Print to PDF file" onPress={printToFile} />
-      {Platform.OS === 'ios' && (
-        <>
-          <View style={styles.spacer} />
-          <Button title="Select printer" onPress={selectPrinter} />
-          <View style={styles.spacer} />
-          {selectedPrinter ? (
-            <Text style={styles.printer}>{`Selected printer: ${selectedPrinter.name}`}</Text>
-          ) : undefined}
-        </>
-      )}
-    </View>
-  );
+    await shareAsync(file.uri)
+  }
+  generatePDF()
+
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    backgroundColor: '#ecf0f1',
-    flexDirection: 'column',
-    padding: 8,
-  },
-  spacer: {
-    height: 8,
-  },
-  printer: {
-    textAlign: 'center',
-  },
-});

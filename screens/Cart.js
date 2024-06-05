@@ -56,12 +56,12 @@ const Cart = ({ navigation }) => {
             />
             <PriceTable
               title={"IVA"}
-              price={roundToTwoDecimals(totalPrice * 0.21)}
+              price={roundToTwoDecimals(totalPrice * 0.16)}
             />
             <View style={styles.grandTotal}>
               <PriceTable
                 title={"Total"}
-                price={roundToTwoDecimals(totalPrice * 1.21)}
+                price={roundToTwoDecimals(totalPrice + (totalPrice * 0.16))}
               />
             </View>
             <TouchableOpacity
@@ -70,7 +70,7 @@ const Cart = ({ navigation }) => {
             >
               <Text style={styles.btnCheckoutText}>COMPROBAR</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={[styles.btnVaciarCheckout]}onPress={handleClearCart}>
+            <TouchableOpacity style={[styles.btnVaciarCheckout]} onPress={handleClearCart}>
               <Text style={styles.btnCheckoutText}>VACIAR CARRITO</Text>
             </TouchableOpacity>
           </View>
