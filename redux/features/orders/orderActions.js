@@ -72,6 +72,7 @@ export const payment = totalAmount => async dispatch => {
 			type: 'paymentSuccess',
 			payload: data?.client_secret,
 		});
+		return data?.client_secret;
 	} catch (error) {
 		dispatch({
 			type: 'paymentFail',

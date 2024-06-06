@@ -4,6 +4,7 @@ import {
 	TouchableOpacity,
 	View,
 	TextInput,
+	ScrollView,
 } from 'react-native';
 import React, { useState } from 'react';
 import { useNavigation, useRoute } from '@react-navigation/native';
@@ -38,7 +39,7 @@ const FormOrders = () => {
 				</TouchableOpacity>
 			</View>
 
-			<View style={styles.container}>
+			<ScrollView style={styles.container}>
 				<View style={styles.header}>
 					<Text style={{ width: '25%', fontWeight: 'bold' }}>Nombre</Text>
 					<Text style={{ width: '20%', fontWeight: 'bold' }}>Productos</Text>
@@ -70,7 +71,7 @@ const FormOrders = () => {
 						);
 					}
 				})}
-			</View>
+			</ScrollView>
 		</View>
 	);
 };

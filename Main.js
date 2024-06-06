@@ -6,7 +6,6 @@ import About from './screens/About';
 import ProductDetails from './screens/ProductDetails';
 import Cart from './screens/Cart';
 import Checkout from './screens/Checkout';
-import Payment from './screens/Payment';
 import Login from './screens/auth/Login';
 import Register from './screens/auth/Register';
 import Account from './screens/Account/Account';
@@ -66,13 +65,15 @@ export default function Main() {
 				<Stack.Screen name='Perfil' component={Profile} />
 				<Stack.Screen name='Notificaciones' component={Notifications} />
 				<Stack.Screen name='Panel de administración' component={Dashboard} />
-				<Stack.Screen name='Pagar' component={Payment} />
 				<Stack.Screen name='Cuenta' component={Account} />
 				<Stack.Screen name='Carrito' component={Cart} />
 				<Stack.Screen name='Formulario de Productos' component={FormProducts} />
 				<Stack.Screen name='Crear Producto' component={CreateProduct} />
 				<Stack.Screen name='Editar Producto' component={EditProduct} />
-				<Stack.Screen name='Formulario de Categorías' component={FormCategories} />
+				<Stack.Screen
+					name='Formulario de Categorías'
+					component={FormCategories}
+				/>
 				<Stack.Screen name='Crear Categoría' component={CreateCategory} />
 				<Stack.Screen name='Editar Categoría' component={EditCategory} />
 				<Stack.Screen name='Formulario de Usuarios' component={FormUsers} />
