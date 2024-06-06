@@ -11,16 +11,13 @@ import { useSelector, useDispatch } from "react-redux";
 import PriceTable from "../components/cart/PriceTable";
 import Layout from "../components/Layout/Layout";
 import CartItem from "../components/cart/CartItem";
-import { clearCart, removeItem } from "../redux/features/cart/cartReducer";
+import { clearCart } from "../redux/features/cart/cartReducer";
 import carritoVacio from "../assets/empty_cart.webp";
 
 const Cart = ({ navigation }) => {
   const cartItems = useSelector((state) => state.cart.items);
   const dispatch = useDispatch();
 
-  const handleRemoveItem = (id) => {
-    dispatch(removeItem(id));
-  };
 
   const handleClearCart = () => {
     dispatch(clearCart());
