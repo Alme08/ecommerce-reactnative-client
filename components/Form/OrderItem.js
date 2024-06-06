@@ -1,24 +1,27 @@
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { format } from 'date-fns';
 import React from 'react';
+import TicketsPDF from '../Tickets/Ticket';
 
 const OrderItem = ({ order }) => {
 	return (
-		<View style={styles.container}>
-			<View style={styles.orderinfo}>
-				<Text>ID Orden : {order._id}</Text>
-				<Text>{format(order.createdAt, 'dd-MM-yyyy')}</Text>
-			</View>
-			{order.orderItems.map(item => (
-				<View style={styles.item} key={item._id}>
-					<Text>Nombre Producto : {item.name}</Text>
-					<Text>Precio : {item.price}</Text>
-					<Text>Cantidad : {item.quantity}</Text>
+		<TouchableOpacity onPress={() => TicketsPDF(order)}>
+			<View style={styles.container}>
+				<View style={styles.orderinfo}>
+					<Text>ID Orden : {order._id}</Text>
+					<Text>{format(order.createdAt, 'dd-MM-yyyy')}</Text>
 				</View>
-			))}
-			<Text style={styles.status}>Total amount : {order.totalAmount} $</Text>
-			<Text style={styles.status}>Order Status: {order.orderStatus}</Text>
-		</View>
+				{order.orderItems.map(item => (
+					<View style={styles.item} key={item._id}>
+						<Text>Nombre Producto : {item.name}</Text>
+						<Text>Precio : {item.price}</Text>
+						<Text>Cantidad : {item.quantity}</Text>
+					</View>
+				))}
+				<Text style={styles.status}>Total amount : {order.totalAmount} $</Text>
+				<Text style={styles.status}>Order Status: {order.orderStatus}</Text>
+			</View>
+		</TouchableOpacity>
 	);
 };
 
