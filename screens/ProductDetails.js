@@ -32,8 +32,8 @@ const ProductDetails = ({ route }) => {
   }, [product]);
 
   const handleAddQty = () => {
-    if (qty === 10) {
-      return alert("Max quantity is 10");
+    if (qty >= 10 || qty >= productDetails.stock) {
+      return alert("Max quantity reached or insufficient stock");
     }
     setQty((prev) => prev + 1);
   };
@@ -45,7 +45,7 @@ const ProductDetails = ({ route }) => {
 
   if (loading) {
     return (
-      <Layout >
+      <Layout>
         <Text style={styles.loading}>
           Cargando...
         </Text>
@@ -63,13 +63,12 @@ const ProductDetails = ({ route }) => {
     );
   }
 
-  	// Add to cart button
-	const handleAddToCart = () => {
+  const handleAddToCart = () => {
 		for (let i = 0; i < qty; i++) {
 			dispatch(addItem(product));
 		}
-		alert('producto añadido al carrito');
-	};
+    alert('Producto añadido al carrito');
+  };
 
   return (
     <Layout>
@@ -88,12 +87,19 @@ const ProductDetails = ({ route }) => {
               {productDetails.stock < qty ? "Agotado" : `Añadir ${qty} al carrito`}
             </Text>
           </TouchableOpacity>
-          <View style={styles.btnContainer}>
+          <View style={styles.qtyContainer}>
             <TouchableOpacity style={styles.btnQty} onPress={handleRemoveQty}>
               <Text style={styles.btnQtyText}>-</Text>
             </TouchableOpacity>
             <Text>{qty}</Text>
-            <TouchableOpacity style={styles.btnQty} onPress={handleAddQty}>
+            <TouchableOpacity 
+              style={[
+                styles.btnQty, 
+                (qty >= 10 || qty >= productDetails.stock) ? styles.btnDisabled : null
+              ]} 
+              onPress={handleAddQty}
+              disabled={qty >= 10 || qty >= productDetails.stock}
+            >
               <Text style={styles.btnQtyText}>+</Text>
             </TouchableOpacity>
           </View>
@@ -150,6 +156,10 @@ const styles = StyleSheet.create({
     textAlign: "center",
     fontSize: 16,
   },
+  qtyContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+  },
   btnQty: {
     backgroundColor: "lightgray",
     width: 40,
@@ -159,6 +169,9 @@ const styles = StyleSheet.create({
   btnQtyText: {
     fontSize: 20,
     fontWeight: "bold",
+  },
+  btnDisabled: {
+    backgroundColor: "darkgray",
   },
 });
 

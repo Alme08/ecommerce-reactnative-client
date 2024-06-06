@@ -10,11 +10,15 @@ const CartItem = ({ item }) => {
   const dispatch = useDispatch();
 
   const handleAddQty = () => {
-    dispatch(incrementQuantity(item._id));
+    if (item.quantity < 10 && item.quantity < item.stock) {
+      dispatch(incrementQuantity(item._id));
+    }
   };
 
   const handleRemoveQty = () => {
-    dispatch(decrementQuantity(item._id));
+    if (item.quantity > 1) {
+      dispatch(decrementQuantity(item._id));
+    }
   };
 
   const truncate = (text, length) => {
@@ -36,7 +40,14 @@ const CartItem = ({ item }) => {
           <Text style={styles.btnQtyText}>-</Text>
         </TouchableOpacity>
         <Text>{item.quantity}</Text>
-        <TouchableOpacity style={styles.btnQty} onPress={handleAddQty}>
+        <TouchableOpacity 
+          style={[
+            styles.btnQty, 
+            item.quantity >= 10 || item.quantity >= item.stock ? styles.btnDisabled : null
+          ]} 
+          onPress={handleAddQty}
+          disabled={item.quantity >= 10 || item.quantity >= item.stock}
+        >
           <Text style={styles.btnQtyText}>+</Text>
         </TouchableOpacity>
       </View>
@@ -80,6 +91,9 @@ const styles = StyleSheet.create({
   btnQtyText: {
     fontSize: 20,
     fontWeight: "bold",
+  },
+  btnDisabled: {
+    backgroundColor: "darkgray",
   },
 });
 
