@@ -102,4 +102,16 @@ export const productDetailReducer = createReducer({}, builder => {
 	builder.addCase('getProductDataFail', (state, action) => {
 		state.error = action.payload;
 	});
+
+	// create review
+	builder.addCase('createReviewRequest', (state, action) => {
+		state.loading = true;
+	});
+	builder.addCase('createReviewSuccess', (state, action) => {
+		state.loading = false;
+		state.message = action.payload;
+	});
+	builder.addCase('createReviewFail', (state, action) => {
+		state.error = action.payload;
+	});
 });

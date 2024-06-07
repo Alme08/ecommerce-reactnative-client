@@ -177,3 +177,24 @@ export const updateProduct = (form, productId) => async dispatch => {
 		});
 	}
 };
+
+export const createReview = (productId, review) => async dispatch => {
+	try {
+		dispatch({
+			type: 'createReviewRequest',
+		});
+		const { data } = await axios.put(
+			`${server}/product/${productId}/review`,
+			review
+		);
+		dispatch({
+			type: 'createReviewSuccess',
+			payload: data.message,
+		});
+	} catch (error) {
+		dispatch({
+			type: 'createReviewFail',
+			payload: error.response.data.message,
+		});
+	}
+};

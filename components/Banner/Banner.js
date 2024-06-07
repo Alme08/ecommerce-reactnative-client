@@ -15,11 +15,9 @@ const { width } = Dimensions.get('window');
 const Banner = () => {
 	const renderItem = data => (
 		<View key={data.coverImageUrl} style={styles.cardContainer}>
-			<Pressable onPress={() => alert(data._id)}>
-				<View style={styles.cardWrapper}>
-					<Image style={styles.card} source={{ uri: data.coverImageUrl }} />
-				</View>
-			</Pressable>
+			<View style={styles.cardWrapper}>
+				<Image style={styles.card} source={{ uri: data.coverImageUrl }} />
+			</View>
 		</View>
 	);
 
