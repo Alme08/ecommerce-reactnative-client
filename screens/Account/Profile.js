@@ -73,41 +73,41 @@ const Profile = ({ navigation }) => {
 								}
 							}}
 						>
-							<Text style={{ color: 'red' }}>Update your profile pic</Text>
+							<Text style={{ color: 'red' }}>Actualiza tu foto de perfil</Text>
 						</Pressable>
 					</View>
 					<InputBox
 						value={name}
 						setValue={setName}
-						placeholder={'Enter your name'}
+						placeholder={'Ingresa tu nombre'}
 						autoComplete={'name'}
 					/>
 					<InputBox
 						value={email}
 						setValue={setEmail}
-						placeholder={'Enter your email'}
+						placeholder={'Ingresa tu email'}
 						autoComplete={'email'}
 					/>
 					<InputBox
 						value={address}
 						setValue={setAddress}
-						placeholder={'Enter your address'}
+						placeholder={'Ingresa tu dirección'}
 						autoComplete={'address-line1'}
 					/>
 					<InputBox
 						value={city}
 						setValue={setCity}
-						placeholder={'Enter your city'}
+						placeholder={'Ingresa tu ciudad'}
 						autoComplete={'country'}
 					/>
 					<InputBox
 						value={phone}
 						setValue={setPhone}
-						placeholder={'Enter your contact number'}
+						placeholder={'Ingresa tu número de teléfono'}
 						autoComplete={'tel'}
 					/>
 					<TouchableOpacity style={styles.btnUpdate} onPress={handleUpdate}>
-						<Text style={styles.btnUpdateText}>UPDATE PROFILE</Text>
+						<Text style={styles.btnUpdateText}>ACTUALIZAR PERFIL</Text>
 					</TouchableOpacity>
 				</ScrollView>
 			</View>

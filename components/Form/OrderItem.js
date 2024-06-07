@@ -18,8 +18,10 @@ const OrderItem = ({ order }) => {
 						<Text>Cantidad : {item.quantity}</Text>
 					</View>
 				))}
-				<Text style={styles.status}>Total amount : {order.totalAmount} $</Text>
-				<Text style={styles.status}>Order Status: {order.orderStatus}</Text>
+				<Text style={styles.status}>
+					Cantidad total : {order.totalAmount} $
+				</Text>
+				<Text style={styles.status}>Estatus orden : {order.orderStatus}</Text>
 			</View>
 		</TouchableOpacity>
 	);
