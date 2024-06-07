@@ -89,7 +89,7 @@ const ResetPassword = ({ navigation }) => {
 					</Text>
 					<View style={styles.btnContainer}>
 						<TouchableOpacity style={styles.loginBtn} onPress={handleLogin}>
-							<Text style={styles.loginBtnText}>Ingresar</Text>
+							<Text style={styles.loginBtnText}>Cambiar</Text>
 						</TouchableOpacity>
 						<Text>
 							¿Recordaste tu contraseña?{' '}

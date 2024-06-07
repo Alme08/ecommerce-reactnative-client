@@ -11,7 +11,7 @@ import { Feather } from '@expo/vector-icons';
 import { AntDesign } from '@expo/vector-icons';
 import { FontAwesome6 } from '@expo/vector-icons';
 import { FontAwesome } from '@expo/vector-icons';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { changeUserStatus } from '../../redux/features/auth/userActions';
 
 const FormUsers = () => {
@@ -20,6 +20,7 @@ const FormUsers = () => {
 	const { params } = useRoute();
 	const [userKeyword, setUserKeyword] = useState('');
 	const [users, setUsers] = useState(params.data);
+	const { user } = useSelector(state => state.user);
 
 	return (
 		<View>
@@ -64,37 +65,39 @@ const FormUsers = () => {
 									>
 										<Feather name='edit' style={styles.editButton} />
 									</TouchableOpacity>
-									<TouchableOpacity
-										onPress={() => {
-											dispatch(changeUserStatus(item._id));
-											setUsers(
-												users.map(user => {
-													if (user._id === item._id) {
-														return { ...user, active: !item.active };
-													}
-													return user;
-												})
-											);
-										}}
-									>
-										{item.active ? (
-											<AntDesign
-												name='minuscircleo'
-												style={[
-													styles.deleteButton,
-													{ backgroundColor: 'red' },
-												]}
-											/>
-										) : (
-											<AntDesign
-												name='pluscircleo'
-												style={[
-													styles.deleteButton,
-													{ backgroundColor: 'green' },
-												]}
-											/>
-										)}
-									</TouchableOpacity>
+									{user.role === 'administrador' && (
+										<TouchableOpacity
+											onPress={() => {
+												dispatch(changeUserStatus(item._id));
+												setUsers(
+													users.map(user => {
+														if (user._id === item._id) {
+															return { ...user, active: !item.active };
+														}
+														return user;
+													})
+												);
+											}}
+										>
+											{item.active ? (
+												<AntDesign
+													name='minuscircleo'
+													style={[
+														styles.deleteButton,
+														{ backgroundColor: 'red' },
+													]}
+												/>
+											) : (
+												<AntDesign
+													name='pluscircleo'
+													style={[
+														styles.deleteButton,
+														{ backgroundColor: 'green' },
+													]}
+												/>
+											)}
+										</TouchableOpacity>
+									)}
 								</View>
 							</View>
 						);

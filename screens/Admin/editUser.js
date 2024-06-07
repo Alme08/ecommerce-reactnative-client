@@ -92,9 +92,9 @@ const EditUser = () => {
 						selectedValue={role}
 						onValueChange={itemValue => setRole(itemValue)}
 					>
-						<Picker.Item label='Usuario' value='user' />
-						<Picker.Item label='Trabajador' value='employee' />
-						<Picker.Item label='Administrador' value='admin' />
+						<Picker.Item label='Usuario' value='usuario' />
+						<Picker.Item label='Trabajador' value='empleado' />
+						<Picker.Item label='Administrador' value='administrador' />
 					</Picker>
 				</View>
 			</View>

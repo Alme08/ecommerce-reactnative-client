@@ -18,6 +18,7 @@ import { deleteCategory } from '../../redux/features/category/categoryActions';
 const FormCategories = () => {
 	const navigation = useNavigation();
 	const dispatch = useDispatch();
+	const { user } = useSelector(state => state.user);
 	const { products } = useSelector(state => state.products);
 	const { params } = useRoute();
 	const [categoryKeyword, setCategoryKeyword] = useState('');
@@ -84,39 +85,46 @@ const FormCategories = () => {
 								<View style={styles.actions}>
 									<TouchableOpacity
 										onPress={() => {
-											navigation.navigate('Editar Categoría', { category: item });
+											navigation.navigate('Editar Categoría', {
+												category: item,
+											});
 										}}
 									>
 										<Feather name='edit' style={styles.editButton} />
 									</TouchableOpacity>
-									<TouchableOpacity
-										onPress={() => {
-											Alert.alert(
-												'Alerta',
-												'¿Estás seguro de que deseas eliminar esta categoría?',
-												[
-													{
-														text: 'Cancel',
-														onPress: () => console.log('Cancel Pressed'),
-														style: 'cancel',
-													},
-													{
-														text: 'OK',
-														onPress: () => {
-															dispatch(deleteCategory(item._id));
-															navigation.navigate('Panel de administración');
+									{user.role === 'administrador' && (
+										<TouchableOpacity
+											onPress={() => {
+												Alert.alert(
+													'Alerta',
+													'¿Estás seguro de que deseas eliminar esta categoría?',
+													[
+														{
+															text: 'Cancel',
+															onPress: () => console.log('Cancel Pressed'),
+															style: 'cancel',
 														},
-													},
-												],
-												{ cancelable: false }
-											);
-										}}
-									>
-										<AntDesign
-											name='delete'
-											style={[styles.deleteButton, { backgroundColor: 'red' }]}
-										/>
-									</TouchableOpacity>
+														{
+															text: 'OK',
+															onPress: () => {
+																dispatch(deleteCategory(item._id));
+																navigation.navigate('Panel de administración');
+															},
+														},
+													],
+													{ cancelable: false }
+												);
+											}}
+										>
+											<AntDesign
+												name='delete'
+												style={[
+													styles.deleteButton,
+													{ backgroundColor: 'red' },
+												]}
+											/>
+										</TouchableOpacity>
+									)}
 								</View>
 							</View>
 						);
