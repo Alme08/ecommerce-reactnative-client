@@ -9,7 +9,6 @@ import Checkout from './screens/Checkout';
 import Login from './screens/auth/Login';
 import Register from './screens/auth/Register';
 import Account from './screens/Account/Account';
-import Notifications from './screens/Account/Notifications';
 import Profile from './screens/Account/Profile';
 import MyOrders from './screens/Account/MyOrders';
 import Dashboard from './screens/Admin/Dashboard';
@@ -63,7 +62,6 @@ export default function Main() {
 				<Stack.Screen name='Verificar Pagos' component={Checkout} />
 				<Stack.Screen name='Mis Ordenes' component={MyOrders} />
 				<Stack.Screen name='Perfil' component={Profile} />
-				<Stack.Screen name='Notificaciones' component={Notifications} />
 				<Stack.Screen name='Panel de administración' component={Dashboard} />
 				<Stack.Screen name='Cuenta' component={Account} />
 				<Stack.Screen name='Carrito' component={Cart} />

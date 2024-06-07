@@ -15,8 +15,10 @@ const ProductCard = ({ product }) => {
 
 	// Add to cart button
 	const handleAddToCart = () => {
-		dispatch(addItem(product));
-		alert('producto añadido al carrito');
+		if(product.stock > 0 ){
+			dispatch(addItem(product));
+			alert('producto añadido al carrito');		
+		}
 	};
 
 	return (
@@ -43,7 +45,9 @@ const ProductCard = ({ product }) => {
 						<Text style={styles.btnText}>Detalles</Text>
 					</TouchableOpacity>
 					<TouchableOpacity style={styles.btnCart} onPress={handleAddToCart}>
-						<Text style={[styles.btnText, { color: '#fff' }]}>Añadir</Text>
+						<Text style={[styles.btnText, { color: '#fff' }]}>
+						{product.stock <= 0 ? "Agotado" : `Añadir`}
+						</Text>
 					</TouchableOpacity>
 				</View>
 			</View>
@@ -87,12 +91,14 @@ const styles = StyleSheet.create({
 		height: 25,
 		width: 70,
 		borderRadius: 5,
-		borderWidth: 2,
+		borderWidth: 1,
 		borderColor: '#000',
 		justifyContent: 'center',
 	},
 	btnCart: {
-		backgroundColor: '#000',
+		backgroundColor: 'orange',
+		borderWidth: 2,
+		borderColor: '#f98b16',
 		height: 25,
 		width: 70,
 		borderRadius: 5,

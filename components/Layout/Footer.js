@@ -29,23 +29,6 @@ const Footer = () => {
 			</TouchableOpacity>
 			<TouchableOpacity
 				style={styles.menuContainer}
-				onPress={() => navigation.navigate('Notificaciones')}
-			>
-				<Feather
-					style={[styles.icon, route.name === 'Notificaciones' && styles.active]}
-					name='bell'
-				/>
-				<Text
-					style={[
-						styles.iconText,
-						route.name === 'Notificaciones' && styles.active,
-					]}
-				>
-					Notificaciones
-				</Text>
-			</TouchableOpacity>
-			<TouchableOpacity
-				style={styles.menuContainer}
 				onPress={() => navigation.navigate('Cuenta')}
 			>
 				<Feather

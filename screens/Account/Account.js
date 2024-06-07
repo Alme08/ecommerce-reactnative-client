@@ -39,13 +39,6 @@ const Account = ({ navigation }) => {
 						<AntDesign name='bars' style={styles.btnText} />
 						<Text style={styles.btnText}>Mis Ordenes</Text>
 					</TouchableOpacity>
-					<TouchableOpacity
-						style={styles.btn}
-						onPress={() => navigation.navigate('Notificaciones')}
-					>
-						<AntDesign name='bells' style={styles.btnText} />
-						<Text style={styles.btnText}>Notificaciones</Text>
-					</TouchableOpacity>
 					{(user.role === 'administrador' || user.role === 'empleado') && (
 						<TouchableOpacity
 							style={styles.btn}
