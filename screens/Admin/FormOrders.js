@@ -39,7 +39,7 @@ const FormOrders = () => {
 				</TouchableOpacity>
 			</View>
 
-			<ScrollView style={styles.container}>
+			<ScrollView style={[styles.container, { marginBottom: 120 }]}>
 				<View style={styles.header}>
 					<Text style={{ width: '25%', fontWeight: 'bold' }}>Nombre</Text>
 					<Text style={{ width: '20%', fontWeight: 'bold' }}>Productos</Text>

@@ -37,7 +37,12 @@ const CommentBox = ({ reviews, hasPurchased, productId }) => {
 					return (
 						<View
 							key={index}
-							style={{ backgroundColor: '#fff', padding: 10, borderRadius: 10 }}
+							style={{
+								backgroundColor: '#fff',
+								padding: 10,
+								borderRadius: 10,
+								marginBottom: 10,
+							}}
 						>
 							<View
 								style={{
@@ -48,7 +53,12 @@ const CommentBox = ({ reviews, hasPurchased, productId }) => {
 							>
 								<Image
 									source={{ uri: review.image.url }}
-									style={{ width: 40, height: 40, borderRadius: 100 }}
+									style={{
+										width: 40,
+										height: 40,
+										borderRadius: 100,
+										marginRight: 10,
+									}}
 								/>
 								<Text style={{ fontWeight: 'bold', fontSize: 17 }}>
 									{review.name} -{' '}
@@ -130,7 +140,16 @@ const CommentBox = ({ reviews, hasPurchased, productId }) => {
 					</TouchableOpacity>
 				</>
 			) : (
-				<Text>Compra este producto para dejar un comentario.</Text>
+				<Text
+					style={{
+						marginBottom: 60,
+						textAlign: 'center',
+						fontWeight: 'bold',
+						fontSize: 15,
+					}}
+				>
+					Compra este producto para dejar un comentario.
+				</Text>
 			)}
 		</View>
 	);
